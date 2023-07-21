@@ -2,7 +2,7 @@
 define('DB_HOST', 'localhost'); 
 define('DB_USERNAME', 'root'); 
 define('DB_PASSWORD', ''); 
-define('DB_NAME', 'pharm');
+define('DB_NAME', 'kfashion');
 
 // date_default_timezone_set('Asia/Karachi');
 
