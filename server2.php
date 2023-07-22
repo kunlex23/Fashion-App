@@ -1,20 +1,19 @@
-							<?php
+<?php
 
                             require 'config.php';
                             
-                            // $sql = "SELECT SUM(total) as totAL FROM sales ";
-                            $sql = "SELECT SUM(amount) as totAL FROM debt where date > now() - interval 7 day";
-                            // where order_date > now() - interval 1 day;
+                            // $sql = "SELECT SUM(totalWIP) as totalWIP FROM sales ";
+                            $sql = "SELECT SUM(Status) as totalWIP FROM jobs ";
+                            
                             if ($result = $conn->query($sql)) {
                               while ($row = $result->fetch_assoc()) {
-                                  $row_total = $row['totAL']; 
+                                  $row_totalWIP = $row['totalWIP']; 
                                   
                                  echo'
-                                     <h1>'.$row_total.'</h1>
+                                     <h1>'.$row_totalWIP.'</h1>
                                  ';
                               }
                               $result->free();
                             }
                             $conn->close();
                             ?> 
-							

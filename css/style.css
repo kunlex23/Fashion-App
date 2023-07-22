@@ -420,11 +420,43 @@ main .recent-sales a {
     margin: 1rem auto;
     color: var(--color-primary);
 }
+/* ============================ */
+/* Apply CSS Grid for a three-column layout */
+/* Apply Flexbox for a three-column layout */
+.three-column-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust this value to control the space between columns */
+}
+
+/* Style for labels */
+label {
+    flex-basis: 33.33%; /* Distribute labels evenly in the three columns */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style for input fields */
+input[type="text"],
+input[type="date"] {
+    flex-basis: 33.33%; /* Distribute input fields evenly in the three columns */
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Adjust styles for smaller screen sizes if necessary */
+/* @media screen and (max-width: 768px) {
+    .three-column-form {
+        flex-direction: column; /* Switch to a single column for smaller screens 
+    }
+} */
+
+/* ============================ */
 form {
-    width: 300px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

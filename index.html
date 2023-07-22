@@ -25,39 +25,25 @@
                 </div>
             </div>
             <div class="sideBar">
-                <a href="xadmin.html" class="active">
+                <a href="index.html" class="active">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="sales.html">
-                    <span class="material-icons-sharp">money</span>
-                    <h3>Sales</h3>
-                </a>
-                <a href="xrecords.html">
+                <a href="client_records.html">
                     <span class="material-icons-sharp">local_library</span>
-                    <h3>Sales Records</h3>
+                    <h3>Client Records</h3>
                 </a>
-                <a href="xuser.html">
+                <a href="newClient.html">
                     <span class="material-icons-sharp">person_outline</span>
-                    <h3>Manage User</h3>
+                    <h3>New Client</h3>
                 </a>
-                
-                <a href="xcustomers.html">
-                    <span class="material-icons-sharp">people</span>
-                    <h3>Customers</h3>
-                </a>
-                <a href="xstockmanagement.html">
+                <a href="workRecord.html">
                     <span class="material-icons-sharp">local_library</span>
-                    <h3>Stock Management</h3>
+                    <h3>Work Records</h3>
                 </a>
-                
-                <a href="xexpensis.html">
-                    <span class="material-icons-sharp">calendar_month</span>
-                    <h3>Expense Records</h3>
-                </a>
-                <a href="xreport.html">
-                    <span class="material-icons-sharp">grading</span>
-                    <h3>Reports</h3>
+                <a href="newWorkentry.html">
+                    <span class="material-icons-sharp">checkroom</span>
+                    <h3>New Work</h3>
                 </a>
                 <a href="#">
                     <span class="material-icons-sharp">logout</span>
@@ -112,47 +98,35 @@
             <!-- ---------END OF EXAM-------- -->
             <div class="recent-sales">
                 <h2>Recent Work</h2>
-                <?php
-                require 'config.php'; 
-                ?>
                 <table>
                     <thead>
                         <tr>
-                            <th>Client</th>
+                            <!-- <th>Client</th> -->
                             <th>Client ID</th>
                             <th>Style</th>
+                            <th>Status</th>
                             <th>Entry Date</th>
                             <th>Due Date</th>
                         </tr>
                     </thead>
                     <?php 
-                	$query = mysqli_query($conn, "SELECT clientID, style,entry_date,delivery_date FROM jobs ORDER BY clientID DESC LIMIT 10");
+                    require 'config.php'; 
+                	$query = mysqli_query($conn, "SELECT customerID, Style, Status, Entry_date, Delivery_date FROM jobs ORDER BY customerID DESC LIMIT 10");
                 	while($row = mysqli_fetch_array($query)){
                 
-                		
-                		$clientID = $row['clientID'];
-                		$style = $row['style'];
-                        $entry_date = $row['entry_date'];
-                        $entry_date = $row['entry_date'];
+                		$customerID = $row['customerID'];
+                		$Style = $row['Style'];
+                        $Status = $row['Status'];
+                        $entry_date = $row['Entry_date'];
+                        $Delivery_date = $row['Delivery_date'];
                         ?>
                             <tbody>
                                 <tr>
-                        
-                                    <td>
-                                        <?php echo $clientID; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $style; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $entry_date; ?>
-                                    </td><td>
-                                        <?php echo $entry_date; ?>
-                                    </td><td>
-                                        <?php echo $subtotal; ?>
-                                    </td><td>
-                                        <?php echo $date; ?>
-                                    </td>
+                                    <td><?php echo $customerID; ?></td>
+                                    <td><?php echo $Style; ?></td>
+                                    <td><?php echo $Status; ?></td>
+                                    <td><?php echo $entry_date; ?></td>
+                                    <td><?php echo $Delivery_date; ?></td>
                             </tbody>
                     <?php 	} ?>
                 </table>
@@ -170,15 +144,7 @@
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>
-                            <?php 
-                            $query = mysqli_query($conn, "SELECT adminuser FROM admin ORDER BY adminID DESC LIMIT 1");
-                            while($row = mysqli_fetch_array($query)){
-                                $admin = $row['adminuser'];
-                            ?>
-                            <?php echo $admin; ?>
-                            <?php 	} ?>
-                        </b></p>
+                        <p> <b></b></p>
                         <small class="text-muted">Admin</small>
                     </div>
                 </div>
@@ -186,32 +152,44 @@
             <div class="sales-analytics">
                 <h2>Recent Clients</h2>
                 <div class="item online">
-                    <div class="right"><b>
+                    <div class="right">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <!-- <th>Client</th> -->
+                                    <th></th>
+                                </tr>
+                            </thead>
                     <?php 
                         $query = mysqli_query($conn, "SELECT clientid, fullname FROM clients_data ORDER BY clientid DESC LIMIT 5");
                         while($row = mysqli_fetch_array($query)){
                         $fullname = $row['fullname'];
                         ?>
-                    <?php echo $fullname; ?>
+                    
+                    <tbody>
+                        <tr>
+                
+                            <td>
+                                <?php echo $fullname; ?>
+                            </td>
+                            
+                    </tbody>
                     <?php 	} ?>
-                    </b>
+                </table>
                     </div>
-                </div>
-               
-                <a href="newClient.html">
-                    <div class="item add-product">
-                    <div>
+                </div><a href="newClient.html">
+                    <div class="item add-product"><div>
+                    <span class="material-icons-sharp">add</span>
+                    <h3>New Client</h3></div></div></a>
+
+                    <a href="newworkentry.html">
+                        <div class="item add-product"><div>
                         <span class="material-icons-sharp">add</span>
-                        <h3>New Client</h3>
-                    </div>
-                </div>
-                </a>
-            </div>
-        </div>
-    </div>
+                        <h3>New Work</h3></div></div></a>
+                    </div></div></div>
+
     <script src="script/scrip.js"></script>
 </body>
-
 </html>
 
 <!-- live data -->
@@ -234,7 +212,6 @@
 
     window.onload = loadXMLDoc;
 </script>
-
 <!-- Maximum reading -->
 <script>
     function loadXMLDoc1() {

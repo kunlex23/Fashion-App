@@ -33,7 +33,7 @@
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Client Records</h3>
                 </a>
-                <a href="newClient.html" class="active">
+                <a href="newClient.html">
                     <span class="material-icons-sharp">person_outline</span>
                     <h3>New Client</h3>
                 </a>
@@ -41,7 +41,7 @@
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Work Records</h3>
                 </a>
-                <a href="newWorkentry.html">
+                <a href="newWorkentry.html" class="active">
                     <span class="material-icons-sharp">checkroom</span>
                     <h3>New Work</h3>
                 </a>
@@ -56,24 +56,81 @@
 
             <!-- ---------END OF EXAM-------- -->
             <div class="recent-sales">
-                <h1>New Client</h1>
-    <form action="/fashion-app/userData.php" method="POST">
+                <h1>New Work</h1>
+    <form class="three-column-form" action="/fashion-app/workData.php" method="POST">
+        
+        <label for="customerID">Client ID:</label>
+        <input type="text" name="customerID" required>
 
-        <label for="fullname">Full Name:</label>
-        <input type="text" name="fullname" required><br>
+        <label for="Style">Style:</label>
+        <input type="text" name="Style" required><br>
 
-        <label for="address">Address:</label>
-        <input type="text" name="address" required><br>
+        <label for="Bust">Bust:</label>
+        <input type="text" name="Bust" required><br>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br>
+        <label for="Waist">Waist:</label>
+        <input type="text" name="Waist" required><br>
 
-        <label for="gender">Gender:</label>
-        <select name="gender" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-        </select><br>
+        <label for="Hips">Hips:</label>
+        <input type="text" name="Hips" required><br>
+
+        <label for="Shoulder_width	">Shoulder Width:</label>
+        <input type="text" name="Shoulder_width	" required><br>
+
+        <label for="Back_lenght">Back Lenght:</label>
+        <input type="text" name="Back_lenght" required><br>
+
+        <label for="Sleeve_lenght">Sleeve Lenght:</label>
+        <input type="text" name="Sleeve_lenght" required><br>
+
+        <label for="Armhole">Armhole:</label>
+        <input type="text" name="Armhole" required><br>
+
+        <label for="Bicep">Bicep:</label>
+        <input type="text" name="Bicep" required><br>
+
+        <label for="Wrist">Wrist:</label>
+        <input type="text" name="Wrist" required><br>
+
+        <label for="Neck">Neck:</label>
+        <input type="text" name="Neck" required><br>
+
+        <label for="Collar">Collar:</label>
+        <input type="text" name="Collar" required><br>
+
+        <label for="Inseam">Inseam:</label>
+        <input type="text" name="Inseam" required><br>
+
+        <label for="Outseam">Outseam:</label>
+        <input type="text" name="Outseam" required><br>
+
+        <label for="Thigh">Thigh:</label>
+        <input type="text" name="Thigh" required><br>
+
+        <label for="Knee">Knee:</label>
+        <input type="text" name="Knee" required><br>
+
+        <label for="Calf">Calf:</label>
+        <input type="text" name="Calf" required><br>
+
+        <label for="Ankle">Ankle:</label>
+        <input type="text" name="Ankle" required><br>
+
+        <label for="Rise">Rise:</label>
+        <input type="text" name="Rise" required><br>
+
+        <label for="Hemline">Hemline:</label>
+        <input type="text" name="Hemline" required><br>
+
+        <label for="Torso_length">Torso Length:</label>
+        <input type="text" name="Torso_length" required><br>
+
+        <label for="Status">Status:</label>
+        <input type="text" name="Status" required><br>
+
+        <label for="Delivery_date">Delivery_date:</label>
+        <input type="date" name="Delivery_date" required>
+
         <input type="submit" value="Submit">
     </form>
         </main>

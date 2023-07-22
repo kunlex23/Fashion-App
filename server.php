@@ -2,15 +2,14 @@
 
                             require 'config.php';
                             
-                            // $sql = "SELECT SUM(total) as totAL FROM sales ";
-                            $sql = "SELECT SUM(subtotal) as totAL FROM sales where date > now() - interval 1 day";
+                            $sql = "SELECT COUNT(*) AS totalClients FROM clients_data";
                             // where order_date > now() - interval 1 day;
                             if ($result = $conn->query($sql)) {
                               while ($row = $result->fetch_assoc()) {
-                                  $row_total = $row['totAL']; 
+                                  $tClients = $row['totalClients']; 
                                   
                                  echo'
-                                     <h1>'.$row_total.'</h1>
+                                     <h1>'.$tClients.'</h1>
                                  ';
                               }
                               $result->free();
