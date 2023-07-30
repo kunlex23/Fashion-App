@@ -18,8 +18,8 @@
             <div class="top">
                 <div class="logo">
                     <!-- <img src="./images/logo.jpeg"> -->
-                    <h2>COMP<span class="compel">ANY</span></h2>
-                    <h2>Name</h2>
+                    <h2>ZIB<span class="compel">AH</span></h2>
+                    <!-- <h2>Name</h2> -->
                 </div>
                 <div class="closeBTN" id="close-btn"><span class="material-icons-sharp">close</span>
                 </div>
@@ -102,34 +102,45 @@
                     <thead>
                         <tr>
                             <!-- <th>Client</th> -->
-                            <th>Client ID</th>
+                            <th>Client</th>
                             <th>Style</th>
-                            <th>Status</th>
+                            <th>Measurement</th>
+                            <th>Sewing</th>
                             <th>Entry Date</th>
                             <th>Due Date</th>
+                            <th>status</th>
+                            <th>Contact</th>
                         </tr>
                     </thead>
                     <?php 
                     require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT customerID, Style, Status, Entry_date, Delivery_date FROM jobs ORDER BY customerID DESC LIMIT 10");
+                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, status, contact FROM jobs ORDER BY workID");
                 	while($row = mysqli_fetch_array($query)){
                 
-                		$customerID = $row['customerID'];
-                		$Style = $row['Style'];
-                        $Status = $row['Status'];
-                        $entry_date = $row['Entry_date'];
-                        $Delivery_date = $row['Delivery_date'];
+                		$fullname = $row['fullname'];
+                		$Style = $row['style'];
+                        $measurement = $row['measurement'];
+                        $sewing = $row['sewing'];
+                        $date = $row['date'];
+                        $delivery_date = $row['delivery_date'];
+                        $status = $row['status'];
+                        $contact = $row['contact'];
+                        
                         ?>
                             <tbody>
                                 <tr>
-                                    <td><?php echo $customerID; ?></td>
+                                    <td><?php echo $fullname; ?></td>
                                     <td><?php echo $Style; ?></td>
-                                    <td><?php echo $Status; ?></td>
-                                    <td><?php echo $entry_date; ?></td>
-                                    <td><?php echo $Delivery_date; ?></td>
+                                    <td><?php echo $measurement; ?></td>
+                                    <td><?php echo $sewing; ?></td>
+                                    <td><?php echo $date; ?></td>
+                                    <td><?php echo $delivery_date; ?></td>
+                                    <td><?php echo $status; ?></td>
+                                    <td><?php echo $contact; ?></td>
                             </tbody>
                     <?php 	} ?>
                 </table>
+
                 <a href="records.html">Show all</a>
         </main>
         <!-- ----------END OF MAIN----------- -->
@@ -150,16 +161,34 @@
                 </div>
             </div>
             <div class="sales-analytics">
-                <h2>Recent Clients</h2>
+                <h2>Delivery Alert</h2>
                 <div class="item online">
                     <div class="right">
                         <table>
-                            <thead>
-                                <tr>
-                                    <!-- <th>Client</th> -->
-                                    <th></th>
-                                </tr>
-                            </thead>
+                    <?php 
+                    $sevenDaysFromNow = date('Y-m-d', strtotime('+7 days'));
+                    
+                    $query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, status, contact FROM jobs WHERE delivery_date BETWEEN CURDATE() AND '$sevenDaysFromNow' ORDER BY workID DESC ");
+                    while($row = mysqli_fetch_array($query)){
+                    $fullname = $row['fullname'];
+                    ?>
+                    
+                    <tbody>
+                        <tr>
+                            <td><?php echo $fullname; ?></td>
+                            <td><?php echo $Style; ?></td>
+                            <td><?php echo $sewing; ?></td>
+                            <td><?php echo $delivery_date; ?></td>
+                    </tbody>
+                    <?php 	} ?>
+                        </table>
+                    </div>
+                </div>
+                
+                <h2>Recent Clients</h2>
+                <!-- <div class="item online">
+                    <div class="right">
+                        <table>
                     <?php 
                         $query = mysqli_query($conn, "SELECT clientid, fullname FROM clients_data ORDER BY clientid DESC LIMIT 5");
                         while($row = mysqli_fetch_array($query)){
@@ -168,16 +197,17 @@
                     
                     <tbody>
                         <tr>
-                
                             <td>
                                 <?php echo $fullname; ?>
                             </td>
-                            
                     </tbody>
                     <?php 	} ?>
-                </table>
+                        </table>
                     </div>
-                </div><a href="newClient.html">
+                </div> -->
+
+                
+                    <a href="newClient.html">
                     <div class="item add-product"><div>
                     <span class="material-icons-sharp">add</span>
                     <h3>New Client</h3></div></div></a>

@@ -18,8 +18,8 @@
             <div class="top">
                 <div class="logo">
                     <!-- <img src="./images/logo.jpeg"> -->
-                    <h2>COMP<span class="compel">ANY</span></h2>
-                    <h2>NAME</h2>
+                    <h2>ZIB<span class="compel">AH</span></h2>
+                    <!-- <h2>Name</h2> -->
                 </div>
                 <div class="closeBTN" id="close-btn"><span class="material-icons-sharp">close</span>
                 </div>
@@ -61,31 +61,42 @@
                     <thead>
                         <tr>
                             <!-- <th>Client</th> -->
-                            <th>Client ID</th>
+                            <th>Client</th>
                             <th>Style</th>
-                            <th>Status</th>
+                            <th>Measurement</th>
+                            <th>Sewing</th>
                             <th>Entry Date</th>
                             <th>Due Date</th>
+                            <th>status</th>
+                            <th>Contact</th>
                         </tr>
                     </thead>
                     <?php 
                     require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT customerID, Style, Status, Entry_date, Delivery_date FROM jobs ORDER BY customerID DESC LIMIT 10");
+                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, status, contact FROM jobs ORDER BY workID DESC LIMIT 10");
                 	while($row = mysqli_fetch_array($query)){
                 
-                		$customerID = $row['customerID'];
-                		$Style = $row['Style'];
-                        $Status = $row['Status'];
-                        $entry_date = $row['Entry_date'];
-                        $Delivery_date = $row['Delivery_date'];
+                		$fullname = $row['fullname'];
+                		$Style = $row['style'];
+                        $measurement = $row['measurement'];
+                        $sewing = $row['sewing'];
+                        $date = $row['date'];
+                        $delivery_date = $row['delivery_date'];
+                        $status = $row['status'];
+                        $contact = $row['contact'];
+                        
                         ?>
                             <tbody>
                                 <tr>
-                                    <td><?php echo $customerID; ?></td>
+                                    <td><?php echo $fullname; ?></td>
                                     <td><?php echo $Style; ?></td>
-                                    <td><?php echo $Status; ?></td>
-                                    <td><?php echo $entry_date; ?></td>
-                                    <td><?php echo $Delivery_date; ?></td>
+                                    <td><?php echo $measurement; ?></td>
+                                    <td><?php echo $sewing; ?></td>
+                                    <td><?php echo $date; ?></td>
+                                    <td><?php echo $delivery_date; ?></td>
+                                    <td><?php echo $status; ?></td>
+                                    <td><?php echo $contact; ?></td>
+                                    <td><?php echo $shoulder; ?></td>
                             </tbody>
                     <?php 	} ?>
                 </table>
@@ -125,6 +136,12 @@
                 </a>
                 
             </div>
+            <form action="/fashion-app/search.php" method="GET">
+
+                <label for="clientID">Enter Client ID and Search:</label>
+                <input type="text" name="clientID" required><br>
+                <input type="submit" value="Search">
+            </form>
         </div>
     </div>
     <script src="script/scrip.js"></script>
