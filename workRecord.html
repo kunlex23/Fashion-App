@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion</title>
+    <title>Zibah</title>
     <!-- Material app -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <!-- style -->
@@ -67,13 +67,13 @@
                             <th>Sewing</th>
                             <th>Entry Date</th>
                             <th>Due Date</th>
-                            <th>status</th>
+                            <th>Status</th>
                             <th>Contact</th>
                         </tr>
                     </thead>
                     <?php 
                     require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, status, contact FROM jobs ORDER BY workID DESC LIMIT 10");
+                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, StatusC, contact FROM jobs ORDER BY workID DESC LIMIT 10");
                 	while($row = mysqli_fetch_array($query)){
                 
                 		$fullname = $row['fullname'];
@@ -82,7 +82,7 @@
                         $sewing = $row['sewing'];
                         $date = $row['date'];
                         $delivery_date = $row['delivery_date'];
-                        $status = $row['status'];
+                        $StatusC = $row['StatusC'];
                         $contact = $row['contact'];
                         
                         ?>
@@ -94,7 +94,7 @@
                                     <td><?php echo $sewing; ?></td>
                                     <td><?php echo $date; ?></td>
                                     <td><?php echo $delivery_date; ?></td>
-                                    <td><?php echo $status; ?></td>
+                                    <td><?php echo $StatusC; ?></td>
                                     <td><?php echo $contact; ?></td>
                                     <td><?php echo $shoulder; ?></td>
                             </tbody>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion</title>
+    <title>Zibah</title>
     <!-- Material app -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <!-- style -->
@@ -58,80 +58,108 @@
             <div class="recent-sales">
                 <h1>New Work</h1>
     <form class="three-column-form" action="/fashion-app/workData.php" method="POST">
+            <div class="tray0">
+
+                <label for="fullname">Full Name:</label>
+                <select name="fullname" required>
+                    <option value="">Select a client</option>
+                    <?php
+                    require 'config.php';
+                    $sql = "SELECT fullname, contact FROM clients_data";
+                    $result = $conn->query($sql);
+                
+                    // Generate options for the combo box
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<option value="' . $row["fullname"] . '">' . $row["fullname"] . ' - ' . $row["contact"] . '</option>';
+                        }
+                    }
+                
+                    ?>
+                </select>
+                
+                
         
-        <label for="customerID">Client ID:</label>
-        <input type="text" name="customerID" required>
+                <label for="measurement">Measurement Tailor:</label>
+                <input type="text" name="measurement" required><br>
+        
+                <label for="sewing">Sewing Tailor:</label>
+                <input type="text" name="sewing" required><br>
+        
+                <label for="style">Style:</label>
+                <input type="text" name="style" required><br>
+        
+                <label for="shoulder">Shoulder:</label>
+                <input type="text" name="shoulder" required><br>
+        
+                <label for="shoulder2burst">Shoulder to Burst Point:</label>
+                <input type="text" name="shoulder2burst" required><br>
+        
+                <label for="shoulder2under_burst">Shoulder to Under Burst:</label>
+                <input type="text" name="shoulder2under_burst" required><br>
+        
+                <label for="burst">Burst:</label>
+                <input type="text" name="burst" required><br>
+        
+            </div>
+            <div class="tray1">
+                <label for="burst_span">Burst Span:</label>
+                <input type="text" name="burst_span" required><br>
+        
+                <label for="round_uder_burst">Round under Burst:</label>
+                <input type="text" name="round_uder_burst" required><br>
 
-        <label for="Style">Style:</label>
-        <input type="text" name="Style" required><br>
+                <label for="blouse_lenght">Blouse Lenght:</label>
+                <input type="text" name="blouse_lenght" required><br>
 
-        <label for="Bust">Bust:</label>
-        <input type="text" name="Bust" required><br>
+                <label for="blouse_hips">Blouse Hips:</label>
+                <input type="text" name="blouse_hips" required><br>
 
-        <label for="Waist">Waist:</label>
-        <input type="text" name="Waist" required><br>
+                <label for="blouse_waist">Blouse Waist:</label>
+                <input type="text" name="blouse_waist" required><br>
 
-        <label for="Hips">Hips:</label>
-        <input type="text" name="Hips" required><br>
+                <label for="back_half_cut">Back Half Cut:</label>
+                <input type="text" name="back_half_cut" required><br>
 
-        <label for="Shoulder_width	">Shoulder Width:</label>
-        <input type="text" name="Shoulder_width	" required><br>
+                <label for="neck_depth">Neck Depth:</label>
+                <input type="text" name="neck_depth" required><br>
 
-        <label for="Back_lenght">Back Lenght:</label>
-        <input type="text" name="Back_lenght" required><br>
+                <label for="round_sleeve">Round Sleeve:</label>
+                <input type="text" name="round_sleeve" required><br>
 
-        <label for="Sleeve_lenght">Sleeve Lenght:</label>
-        <input type="text" name="Sleeve_lenght" required><br>
+                <label for="sleeve_lenght">Sleeve Lenght:</label>
+                <input type="text" name="sleeve_lenght" required><br>
 
-        <label for="Armhole">Armhole:</label>
-        <input type="text" name="Armhole" required><br>
+                
+            </div>
+            <div class="tray2">
+                <label for="shoulder2knee">Shoulder to Knee:</label>
+                <input type="text" name="shoulder2knee" required><br>
+                    
+                <label for="skirt_waist">Skirt Waist:</label>
+                <input type="text" name="skirt_waist" required><br>
+                    
+                <label for="skirt_length">Skirt Length:</label>
+                <input type="text" name="skirt_length" required><br>
 
-        <label for="Bicep">Bicep:</label>
-        <input type="text" name="Bicep" required><br>
+                <label for="hips">Hips:</label>
+                <input type="text" name="hips" required><br>
 
-        <label for="Wrist">Wrist:</label>
-        <input type="text" name="Wrist" required><br>
+                <label for="full_length">Full Length:</label>
+                <input type="text" name="full_length" required><br>
 
-        <label for="Neck">Neck:</label>
-        <input type="text" name="Neck" required><br>
+                <label for="round_knee">Round Knee:</label>
+                <input type="text" name="round_knee" required><br>
 
-        <label for="Collar">Collar:</label>
-        <input type="text" name="Collar" required><br>
+                <label for="delivery_date">Delivery Date:</label>
+                <input type="date" name="delivery_date" required><br>
 
-        <label for="Inseam">Inseam:</label>
-        <input type="text" name="Inseam" required><br>
-
-        <label for="Outseam">Outseam:</label>
-        <input type="text" name="Outseam" required><br>
-
-        <label for="Thigh">Thigh:</label>
-        <input type="text" name="Thigh" required><br>
-
-        <label for="Knee">Knee:</label>
-        <input type="text" name="Knee" required><br>
-
-        <label for="Calf">Calf:</label>
-        <input type="text" name="Calf" required><br>
-
-        <label for="Ankle">Ankle:</label>
-        <input type="text" name="Ankle" required><br>
-
-        <label for="Rise">Rise:</label>
-        <input type="text" name="Rise" required><br>
-
-        <label for="Hemline">Hemline:</label>
-        <input type="text" name="Hemline" required><br>
-
-        <label for="Torso_length">Torso Length:</label>
-        <input type="text" name="Torso_length" required><br>
-
-        <label for="Status">Status:</label>
-        <input type="text" name="Status" required><br>
-
-        <label for="Delivery_date">Delivery_date:</label>
-        <input type="date" name="Delivery_date" required>
-
-        <input type="submit" value="Submit">
+                <div class="job">
+                    <input type="submit" value="Submit">
+                </div>
+            </div>
+        
+        
     </form>
         </main>
         <!-- ----------END OF MAIN----------- -->

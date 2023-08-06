@@ -2,38 +2,44 @@
 
 require 'config.php'; 
 // Get the data from the form
-$customerID = $_POST['customerID'];
-$Style = $_POST['Style'];
-$Bust = $_POST['Bust'];
-$Waist = $_POST['Waist'];
-$Hips = $_POST['Hips'];
-$Shoulder_width = $_POST['Shoulder_width'];
-$Back_lenght = $_POST['Back_lenght'];
-$Sleeve_lenght = $_POST['Sleeve_lenght'];
-$Armhole = $_POST['Armhole'];
-$Bicep = $_POST['Bicep'];
-$Wrist = $_POST['Wrist'];
-$Neck = $_POST['Neck'];
-$Collar = $_POST['Collar'];
-$Inseam = $_POST['Inseam'];
-$Outseam = $_POST['Outseam'];
-$Thigh = $_POST['Thigh'];
-$Knee = $_POST['Knee'];
-$Calf = $_POST['Calf'];
-$Ankle = $_POST['Ankle'];
-$Rise = $_POST['Rise'];
-$Hemline = $_POST['Hemline'];
-$Torso_length = $_POST['Torso_length'];
-$Status = $_POST['Status'];
-$Delivery_date = $_POST['Delivery_date'];
-
+$fullname = $_POST['fullname'];
+$style = $_POST['style'];
+$measurement = $_POST['measurement'];
+$sewing = $_POST['sewing'];
+$delivery_date = $_POST['delivery_date'];
+$contact = $_POST['contact'];
+$shoulder = $_POST['shoulder'];
+$shoulder2burst = $_POST['shoulder2burst'];
+$shoulder2under_burst = $_POST['shoulder2under_burst'];
+$burst = $_POST['burst'];
+$burst_span = $_POST['burst_span'];
+$round_uder_burst = $_POST['round_uder_burst'];
+$blouse_lenght = $_POST['blouse_lenght'];
+$blouse_hips = $_POST['blouse_hips'];
+$blouse_waist = $_POST['blouse_waist'];
+$back_half_cut = $_POST['back_half_cut'];
+$neck_depth = $_POST['neck_depth'];
+$round_sleeve = $_POST['round_sleeve'];
+$sleeve_lenght = $_POST['sleeve_lenght'];
+$shoulder2knee = $_POST['shoulder2knee'];
+$skirt_waist = $_POST['skirt_waist'];
+$skirt_length = $_POST['skirt_length'];
+$hips = $_POST['hips'];
+$full_length = $_POST['full_length'];
+$round_knee = $_POST['round_knee'];
+$StatusC = 'In Progress';
+$status = '1';
 
 // Prepare and execute the SQL statement to insert the data
-$sql = "INSERT INTO jobs (customerID, Style, Bust, Waist, Hips, Shoulder_width, Back_lenght,Sleeve_lenght,Armhole,Bicep,Wrist,Neck,Collar,Inseam,Outseam,Thigh,Knee,Calf,Ankle,Rise,Hemline,Torso_length,Status,Delivery_date)
-        VALUES ('$customerID', '$Style', '$Bust', '$Waist', '$Hips', '$Shoulder_width', '$Back_lenght','$Sleeve_lenght','$Armhole','$Bicep','$Wrist','$Neck','$Collar','$Inseam','$Outseam','$Thigh','$Knee','$Calf','$Ankle','$Rise','$Hemline','$Torso_length','$Status','$Delivery_date')";
+$sql = "INSERT INTO jobs (fullname, style, measurement, sewing, delivery_date, status, contact,shoulder,shoulder2burst,shoulder2under_burst,burst,burst_span,round_uder_burst,blouse_lenght,blouse_hips,blouse_waist,back_half_cut,neck_depth,round_sleeve,sleeve_lenght,shoulder2knee,skirt_waist,skirt_length,hips,full_length,round_knee,StatusC)
+        VALUES ('$fullname', '$style', '$measurement', '$sewing', '$delivery_date', '$status', '$contact','$shoulder','$shoulder2burst','$shoulder2under_burst','$burst','$burst_span','$round_uder_burst','$blouse_lenght','$blouse_hips','$blouse_waist','$back_half_cut','$neck_depth','$round_sleeve','$sleeve_lenght','$shoulder2knee','$skirt_waist','$skirt_length','$hips','$full_length','$round_knee','$StatusC')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully!";
+    sleep(2);
+    // Redirect back to the previous page
+    header("Location: /fashion-app/workRecord.html"); // Replace 'previous_page.php' with the actual URL
+    exit(); // Make sure to exit after redirection
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

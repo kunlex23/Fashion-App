@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supreme</title>
+    <title>Zibah</title>
     <!-- Material app -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <!-- style -->
@@ -114,7 +114,7 @@
                     </thead>
                     <?php 
                     require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, status, contact FROM jobs ORDER BY workID");
+                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, StatusC, contact FROM jobs ORDER BY workID");
                 	while($row = mysqli_fetch_array($query)){
                 
                 		$fullname = $row['fullname'];
@@ -123,7 +123,7 @@
                         $sewing = $row['sewing'];
                         $date = $row['date'];
                         $delivery_date = $row['delivery_date'];
-                        $status = $row['status'];
+                        $StatusC = $row['StatusC'];
                         $contact = $row['contact'];
                         
                         ?>
@@ -135,13 +135,13 @@
                                     <td><?php echo $sewing; ?></td>
                                     <td><?php echo $date; ?></td>
                                     <td><?php echo $delivery_date; ?></td>
-                                    <td><?php echo $status; ?></td>
+                                    <td><?php echo $StatusC; ?></td>
                                     <td><?php echo $contact; ?></td>
                             </tbody>
                     <?php 	} ?>
                 </table>
 
-                <a href="records.html">Show all</a>
+                <a href="workRecord.html">Show all</a>
         </main>
         <!-- ----------END OF MAIN----------- -->
         <div class="right">
@@ -186,7 +186,7 @@
                 </div>
                 
                 <h2>Recent Clients</h2>
-                <!-- <div class="item online">
+                <div class="item online">
                     <div class="right">
                         <table>
                     <?php 
@@ -204,7 +204,7 @@
                     <?php 	} ?>
                         </table>
                     </div>
-                </div> -->
+                </div>
 
                 
                     <a href="newClient.html">

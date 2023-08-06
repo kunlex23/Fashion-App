@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion</title>
+    <title>Zibah</title>
     <!-- Material app -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <!-- style -->
@@ -60,8 +60,6 @@
                 <table>
                     <thead>
                         <tr>
-                            <!-- <th>Client</th> -->
-                            <th>ID</th>
                             <th>Client</th>
                             <th>Address</th>
                             <th>Email</th>
@@ -71,10 +69,9 @@
                     </thead>
                     <?php 
                     require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT clientID, fullname, address, email, gender,date FROM clients_data ORDER BY fullname DESC"); 
+                	$query = mysqli_query($conn, "SELECT clientID, fullname, address, email, gender,date FROM clients_data ORDER BY fullname ASC"); 
                 	while($row = mysqli_fetch_array($query)){
                 
-                		$clientID = $row['clientID'];
                 		$fullname = $row['fullname'];
                 		$address = $row['address'];
                         $email = $row['email'];
@@ -83,7 +80,6 @@
                         ?>
                             <tbody>
                                 <tr>
-                                    <td><?php echo $clientID; ?></td>
                                     <td><?php echo $fullname; ?></td>
                                     <td><?php echo $address; ?></td>
                                     <td><?php echo $email; ?></td>
