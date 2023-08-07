@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <!-- style -->
     <link rel="stylesheet" href="css/style.css">
+   
 </head>
 
 <body>
@@ -104,7 +105,7 @@
                             <!-- <th>Client</th> -->
                             <th>Client</th>
                             <th>Style</th>
-                            <th>Measurement</th>
+                            <th>M. Tailor</th>
                             <th>Sewing</th>
                             <th>Entry Date</th>
                             <th>Due Date</th>
@@ -162,9 +163,18 @@
             </div>
             <div class="sales-analytics">
                 <h2>Delivery Alert</h2>
-                <div class="item online">
+                <div class="item-online">
                     <div class="right">
-                        <table>
+                        <table style="width: 100%; "class="due_client">
+                           <thead style="text-align: left;">
+                            <tr>
+                                <!-- <th>Client</th> -->
+                                <th>Client</th>
+                                <th>Style</th>
+                                <th>Sewing</th>
+                                <th>Due Date</th>
+                            </tr>
+                        </thead>
                     <?php 
                     $sevenDaysFromNow = date('Y-m-d', strtotime('+7 days'));
                     
@@ -185,9 +195,9 @@
                     </div>
                 </div>
                 
-                <h2>Recent Clients</h2>
                 <div class="item online">
                     <div class="right">
+                        <h2>Recent Clients</h2>
                         <table>
                     <?php 
                         $query = mysqli_query($conn, "SELECT clientid, fullname FROM clients_data ORDER BY clientid DESC LIMIT 5");

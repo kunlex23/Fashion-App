@@ -565,14 +565,20 @@ input[type="submit"]:hover {
 
 /* =================SALES ANALYTICS============ */
 .right .sales-analytics {
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .right .sales-analytics h2 {
     margin-bottom: 0.5rem;
 }
+.due_client{
+    background-color:var(--color-white);
+    padding: 0.8rem;
+    border-radius: 1rem;
+}
 
 .right .sales-analytics .item {
+    margin-top: 2rem;
     background: var(--color-white);
     display: flex;
     align-items: center;
@@ -582,6 +588,7 @@ input[type="submit"]:hover {
     border-radius: var(--border-radius-3);
     box-shadow: var(--box-shadow);
     transition: all 300ms ease;
+    font-size: 1.2rem;
 }
 
 .right .sales-analytics.item:hover {
