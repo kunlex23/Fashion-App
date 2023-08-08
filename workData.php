@@ -38,12 +38,13 @@ if ($conn->query($sql) === TRUE) {
     echo "New record created successfully!";
     sleep(2);
     // Redirect back to the previous page
-    header("Location: /fashion-app/workRecord.html"); // Replace 'previous_page.php' with the actual URL
-    exit(); // Make sure to exit after redirection
+    header("Location: /fashion-app/newWorkentry.html?status=success");
+    exit();
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 // Close the database connection
 $conn->close();
+
 ?>

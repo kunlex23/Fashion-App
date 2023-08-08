@@ -1,39 +1,166 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zibah</title>
+    <!-- Material app -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <!-- style -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+       table, th, td {
+  /* border: 1px solid black; */
+  /* border-collapse: collapse; */
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.4);
+}
+
+td:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.4);
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <!-- <img src="./images/logo.jpeg"> -->
+                    <h2>ZIB<span class="compel">AH</span></h2>
+                    <!-- <h2>Name</h2> -->
+                </div>
+                <div class="closeBTN" id="close-btn"><span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+            <div class="sideBar">
+                <a href="index.html">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="client_records.html">
+                    <span class="material-icons-sharp">local_library</span>
+                    <h3>Client Records</h3>
+                </a>
+                <a href="newClient.html">
+                    <span class="material-icons-sharp">person_outline</span>
+                    <h3>New Client</h3>
+                </a>
+                <a href="workRecord.html" class="active">
+                    <span class="material-icons-sharp">local_library</span>
+                    <h3>Work Records</h3>
+                </a>
+                <a href="newWorkentry.html">
+                    <span class="material-icons-sharp">checkroom</span>
+                    <h3>New Work</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp"></span>
+                    <h3></h3>
+                </a>
+            </div>
+            </aside>
+        <!------------ END OF ASIDE ------------>
+        <main>
+
+            <!-- ---------END OF EXAM-------- -->
+            <div class="recent-sales">
+                <h1>Searched Records</h1>
+                <?php
 require 'config.php';
 
 // Check if the form has been submitted
-if (isset($_GET['clientID'])) {
-    // Get the clientID from the URL parameters
-    $clientID = $_GET['clientID'];
+if (isset($_GET['fullname'])) {
+    // Get the fullname from the URL parameters and sanitize it
+    $fullname = $conn->real_escape_string($_GET['fullname']);
 
-    // Validate the clientID (you can add more validation if needed)
-    if (!is_numeric($clientID)) {
-        echo "Please enter a valid numeric Client ID.";
-        exit; // Stop further processing
-    }
-
-    // Prepare and execute the SQL statement to search for jobs related to the given clientID
-    $sql = "SELECT * FROM jobs WHERE customerID = $clientID";
-
-    $result = $conn->query($sql);
+    // Prepare the SQL statement using a prepared statement
+    $sql = "SELECT * FROM jobs WHERE fullname = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $fullname);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
+        echo '<table border="1">';
+        echo '<tr><th>Fullname</th><th>Style</th><th>Status</th><th>Entry Date</th><th>Delivery Date</th></tr>';
+        
         // Output data of each row
         while ($row = $result->fetch_assoc()) {
-            echo " Job ID: " . $row["jobID"] . "<br>";
-            echo " Client ID: " . $row["customerID"] . "<br>";
-            echo " Style: " . $row["Style"] . "<br>";
-            echo " Status: " . $row["Status"] . "<br>";
-            echo " Entry Date: " . $row["Entry_date"] . "<br>";
-            echo " Delivery Date: " . $row["Delivery_date"] . "<br>";
+            echo '<tr>';
+            echo '<td>' . htmlspecialchars($row["fullname"]) . '</td>';
+            echo '<td>' . htmlspecialchars($row["style"]) . '</td>';
+            echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
+            echo '<td>' . htmlspecialchars($row["date"]) . '</td>';
+            echo '<td>' . htmlspecialchars($row["delivery_date"]) . '</td>';
             // Output other job-related information here as needed
-            echo "<br>";
+            echo '</tr>';
         }
+        
+        echo '</table>';
     } else {
-        echo "No jobs found for the given Client ID.";
+        echo "No record found";
     }
+
+    // Close the prepared statement
+    $stmt->close();
 
     // Close the database connection
     $conn->close();
 }
 ?>
+
+
+                 </main>
+                <!-- ----------END OF MAIN----------- -->
+                <div class="right">
+                <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+                </div>            <!-- -----------END OF RECENT UPDATE--------------- -->
+                <div class="sales-analytics">
+
+                <a href="newWorkentry.html">
+                    <div class="item add-product">
+                        <div>
+                            <span class="material-icons-sharp">add</span>
+                            <h3>New Work</h3>
+                        </div>
+                    </div>
+                </a>
+                
+             </div><div class="sales-analytics">
+
+                <a href="newClient.html">
+                    <div class="item add-product">
+                        <div>
+                            <span class="material-icons-sharp">add</span>
+                            <h3>New Client</h3>
+                        </div>
+                    </div>
+                </a>
+                
+            </div>
+            <form action="/fashion-app/search.php" method="GET">
+
+                <label for="fullname">Enter Client's Name and Search:</label>
+                <input type="text" name="fullname" required><br>
+                <input type="submit" value="Search">
+            </form>
+        </div>
+    </div>
+    <script src="script/scrip.js"></script>
+</body>
+
+</html>

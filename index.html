@@ -47,8 +47,8 @@
                     <h3>New Work</h3>
                 </a>
                 <a href="#">
-                    <span class="material-icons-sharp">logout</span>
-                    <h3>Logout</h3>
+                    <span class="material-icons-sharp"></span>
+                    <h3></h3>
                 </a>
             </div>
         </aside>
@@ -115,7 +115,7 @@
                     </thead>
                     <?php 
                     require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, StatusC, contact FROM jobs ORDER BY workID");
+                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, StatusC, contact FROM jobs ORDER BY workID LIMIT 10");
                 	while($row = mysqli_fetch_array($query)){
                 
                 		$fullname = $row['fullname'];
@@ -161,8 +161,23 @@
                     </div>
                 </div>
             </div>
+            
             <div class="sales-analytics">
-                <h2>Delivery Alert</h2>
+
+                <a href="newClient.html">
+                    <div class="item add-product"><div>
+                    <span class="material-icons-sharp">add</span>
+                    <h3>New Client</h3>
+                    </div></div>
+                    </a>
+
+                    <a href="newworkentry.html">
+                        <div class="item add-product"><div>
+                        <span class="material-icons-sharp">add</span>
+                        <h3>New Work</h3>
+                        </div></div>
+                    </a>
+                <span><h2>Delivery Focus</h2><span>Deliveries less than 8 Days</span></span>
                 <div class="item-online">
                     <div class="right">
                         <table style="width: 100%; "class="due_client">
@@ -195,37 +210,6 @@
                     </div>
                 </div>
                 
-                <div class="item online">
-                    <div class="right">
-                        <h2>Recent Clients</h2>
-                        <table>
-                    <?php 
-                        $query = mysqli_query($conn, "SELECT clientid, fullname FROM clients_data ORDER BY clientid DESC LIMIT 5");
-                        while($row = mysqli_fetch_array($query)){
-                        $fullname = $row['fullname'];
-                        ?>
-                    
-                    <tbody>
-                        <tr>
-                            <td>
-                                <?php echo $fullname; ?>
-                            </td>
-                    </tbody>
-                    <?php 	} ?>
-                        </table>
-                    </div>
-                </div>
-
-                
-                    <a href="newClient.html">
-                    <div class="item add-product"><div>
-                    <span class="material-icons-sharp">add</span>
-                    <h3>New Client</h3></div></div></a>
-
-                    <a href="newworkentry.html">
-                        <div class="item add-product"><div>
-                        <span class="material-icons-sharp">add</span>
-                        <h3>New Work</h3></div></div></a>
                     </div></div></div>
 
     <script src="script/scrip.js"></script>

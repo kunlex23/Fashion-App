@@ -10,6 +10,21 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <!-- style -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+       table, th, td {
+  /* border: 1px solid black; */
+  /* border-collapse: collapse; */
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.4);
+}
+
+td:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.4);
+}
+    </style>
 </head>
 
 <body>
@@ -46,8 +61,8 @@
                     <h3>New Work</h3>
                 </a>
                 <a href="#">
-                    <span class="material-icons-sharp">logout</span>
-                    <h3>Logout</h3>
+                    <span class="material-icons-sharp"></span>
+                    <h3></h3>
                 </a>
             </div>
             </aside>
@@ -57,7 +72,7 @@
             <!-- ---------END OF EXAM-------- -->
             <div class="recent-sales">
                 <h1>Work Records</h1>
-                <table>
+                <table style="width: 100%;">
                     <thead>
                         <tr>
                             <!-- <th>Client</th> -->
@@ -73,7 +88,7 @@
                     </thead>
                     <?php 
                     require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, StatusC, contact FROM jobs ORDER BY workID DESC LIMIT 10");
+                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, StatusC, contact FROM jobs ORDER BY workID DESC");
                 	while($row = mysqli_fetch_array($query)){
                 
                 		$fullname = $row['fullname'];
@@ -101,10 +116,10 @@
                     <?php 	} ?>
                 </table>
 
-        </main>
-        <!-- ----------END OF MAIN----------- -->
-        <div class="right">
-            <div class="top">
+                 </main>
+                <!-- ----------END OF MAIN----------- -->
+                <div class="right">
+                <div class="top">
                 <button id="menu-btn">
                     <span class="material-icons-sharp">menu</span>
                 </button>
@@ -112,8 +127,8 @@
                     <span class="material-icons-sharp active">light_mode</span>
                     <span class="material-icons-sharp">dark_mode</span>
                 </div>
-            </div>            <!-- -----------END OF RECENT UPDATE--------------- -->
-            <div class="sales-analytics">
+                </div>            <!-- -----------END OF RECENT UPDATE--------------- -->
+                <div class="sales-analytics">
 
                 <a href="newWorkentry.html">
                     <div class="item add-product">
@@ -124,7 +139,7 @@
                     </div>
                 </a>
                 
-            </div><div class="sales-analytics">
+             </div><div class="sales-analytics">
 
                 <a href="newClient.html">
                     <div class="item add-product">
@@ -138,8 +153,8 @@
             </div>
             <form action="/fashion-app/search.php" method="GET">
 
-                <label for="clientID">Enter Client ID and Search:</label>
-                <input type="text" name="clientID" required><br>
+                <label for="fullname">Enter Client's Name and Search:</label>
+                <input type="text" name="fullname" required><br>
                 <input type="submit" value="Search">
             </form>
         </div>
