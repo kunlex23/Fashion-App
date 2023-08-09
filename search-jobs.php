@@ -44,7 +44,7 @@ td:nth-child(even) {
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="client_records.html">
+                <a href="client_records.html" class="active">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Client Records</h3>
                 </a>
@@ -52,7 +52,7 @@ td:nth-child(even) {
                     <span class="material-icons-sharp">person_outline</span>
                     <h3>New Client</h3>
                 </a>
-                <a href="workRecord.html" class="active">
+                <a href="workRecord.html">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Work Records</h3>
                 </a>
@@ -71,50 +71,51 @@ td:nth-child(even) {
 
             <!-- ---------END OF EXAM-------- -->
             <div class="recent-sales">
-                <h1>Work Records</h1>
-                <table style="width: 100%;">
-                    <thead>
-                        <tr>
-                            <!-- <th>Client</th> -->
-                            <th>Client</th>
-                            <th>Style</th>
-                            <th>Measurement</th>
-                            <th>Sewing</th>
-                            <th>Entry Date</th>
-                            <th>Due Date</th>
-                            <th>Status</th>
-                            <th>Contact</th>
-                        </tr>
-                    </thead>
-                    <?php 
-                    require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, StatusC, contact FROM jobs ORDER BY workID DESC");
-                	while($row = mysqli_fetch_array($query)){
-                
-                		$fullname = $row['fullname'];
-                		$Style = $row['style'];
-                        $measurement = $row['measurement'];
-                        $sewing = $row['sewing'];
-                        $date = $row['date'];
-                        $delivery_date = $row['delivery_date'];
-                        $StatusC = $row['StatusC'];
-                        $contact = $row['contact'];
-                        
-                        ?>
-                            <tbody>
-                                <tr>
-                                    <td><a href="work-done.php?fullname=<?php echo urlencode($fullname); ?>"><?php echo $fullname; ?></a></td>
-                                    <td><?php echo $Style; ?></td>
-                                    <td><?php echo $measurement; ?></td>
-                                    <td><?php echo $sewing; ?></td>
-                                    <td><?php echo $date; ?></td>
-                                    <td><?php echo $delivery_date; ?></td>
-                                    <td><?php echo $StatusC; ?></td>
-                                    <td><?php echo $contact; ?></td>
-                                    <td><?php echo $shoulder; ?></td>
-                            </tbody>
-                    <?php 	} ?>
-                </table>
+
+            <h1><?php echo $_GET['fullname']; ?> details</details></h1>
+
+<?php
+require 'config.php'; 
+// Get the fullname from the URL parameter
+$fullname = $_GET['fullname'];
+
+// Prepare and execute a SQL query to fetch records from the jobs table
+$sql = "SELECT * FROM jobs WHERE fullname LIKE '%$fullname%'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+
+    echo "<table border='1'>
+    <tr>
+        <th>Style</th>
+        <th>M. Tailor</th>
+        <th>Sewing</th>
+        <th>Entry Date</th>
+        <th>Due Date</th>
+        <th>status</th>
+        <th>Contact</th>
+                            
+        <!-- Add more columns as needed -->
+    </tr>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>
+            <td>".$row['style']."</td>
+            <td>".$row['measurement']."</td>
+            <td>".$row['sewing']."</td>
+            <td>".$row['date']."</td>
+            <td>".$row['delivery_date']."</td>
+            <td>".$row['StatusC']."</td>
+            <td>".$row['contact']."</td>
+            <!-- Add more columns as needed -->
+        </tr>";
+    }
+    echo "</table>";
+} else {
+    echo "No results found.";
+}
+
+$conn->close();
+?>
 
                  </main>
                 <!-- ----------END OF MAIN----------- -->
@@ -160,39 +161,6 @@ td:nth-child(even) {
         </div>
     </div>
     <script src="script/scrip.js"></script>
-    
-    <!-- ==========work-done============ -->
-    <script>
-        var tbody = document.getElementById('table-body');
-        var rows = tbody.querySelectorAll('tr');
-    
-        rows.forEach(function(row) {
-            var fullnameLink = row.querySelector('td:first-child a');
-            
-            fullnameLink.addEventListener('click', function(event) {
-                event.preventDefault();
-    
-                var fullname = fullnameLink.textContent;
-    
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', 'update_status.php?fullname=' + encodeURIComponent(fullname), true);
-    
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            var statusCell = row.querySelector('td:nth-child(7)');
-                            statusCell.textContent = 'Updated Status';
-                        } else {
-                            console.error('Error updating status:', xhr.statusText);
-                        }
-                    }
-                };
-    
-                xhr.send();
-            });
-        });
-    </script>
-        
 </body>
 
 </html>

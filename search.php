@@ -105,7 +105,7 @@ if (isset($_GET['fullname'])) {
         
         echo '</table>';
     } else {
-        echo "No record found";
+        echo "No record found!";
     }
 
     // Close the prepared statement

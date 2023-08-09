@@ -1,3 +1,13 @@
+`workID`, `fullname`, `style`, `measurement`, `sewing`, 
+`date`, `delivery_date`, `status`, `contact`, `shoulder`, 
+`shoulder2burst`, `shoulder2under_burst`, `burst`, 
+`burst_span`, `round_uder_burst`, `blouse_lenght`, 
+`blouse_hips`, `blouse_waist`, `back_half_cut`, 
+`neck_depth`, `round_sleeve`, `sleeve_lenght`, 
+`shoulder2knee`, `skirt_waist`, `skirt_length`, 
+`hips`, `full_length`, `round_knee`, `StatusC` 
+
+===================================================
 <?php
 require 'config.php';
 

@@ -61,30 +61,33 @@
                     <thead>
                         <tr>
                             <th>Client</th>
+                            <th>Contact</th>
                             <th>Address</th>
                             <th>Email</th>
                             <th>Gender</th>
-                            <th>Date</th>
+                            <!-- <th>Date</th> -->
                         </tr>
                     </thead>
                     <?php 
                     require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT clientID, fullname, address, email, gender,date FROM clients_data ORDER BY fullname ASC"); 
+                	$query = mysqli_query($conn, "SELECT clientID, fullname, contact, address, email, gender,date FROM clients_data ORDER BY fullname ASC"); 
                 	while($row = mysqli_fetch_array($query)){
                 
                 		$fullname = $row['fullname'];
-                		$address = $row['address'];
+                		$contact = $row['contact'];
+                        $address = $row['address'];
                         $email = $row['email'];
                         $gender = $row['gender'];
                         $date = $row['date'];
                         ?>
                             <tbody>
                                 <tr>
-                                    <td><?php echo $fullname; ?></td>
+                                    <td><a href="search-jobs.php?fullname=<?php echo urlencode($fullname); ?>"><?php echo $fullname; ?></a></td>
+                                    <td><?php echo $contact; ?></td>
                                     <td><?php echo $address; ?></td>
                                     <td><?php echo $email; ?></td>
                                     <td><?php echo $gender; ?></td>
-                                    <td><?php echo $date; ?></td>
+                                    <!-- <td><?php echo $date; ?></td> -->
                             </tbody>
                     <?php 	} ?>
                 </table>
