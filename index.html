@@ -82,10 +82,11 @@
                     <!-- <small class="text-muted">Last 24hrs</small> -->
                 </div>
                 <!-- END OF GRADUTE STUDES -->
-                <div class="income">
+                
+                    <div class="income">
                     <div class="middle">
                         <div class="left">
-                            <h3>Total Work in Progress</h3>
+                            <a href="work-in-prog.html"><h3>Total Work in Progress</h3></a>
                             <div id="link_wrapper2">
                             
                             </div>
@@ -94,6 +95,7 @@
                     </div>
                     <!-- <small class="text-muted">Last 7 days</small> -->
                 </div>
+            
                 <!-- END OF INCOME -->
             </div>
             <!-- ---------END OF EXAM-------- -->
@@ -115,7 +117,7 @@
                     </thead>
                     <?php 
                     require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, StatusC, contact FROM jobs ORDER BY workID LIMIT 10");
+                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, StatusC, contact FROM jobs ORDER BY workID DESC LIMIT 10 ");
                 	while($row = mysqli_fetch_array($query)){
                 
                 		$fullname = $row['fullname'];
@@ -151,9 +153,9 @@
                     <span class="material-icons-sharp">menu</span>
                 </button>
                 <div class="theme-toggler">
-                    <span class="material-icons-sharp active">light_mode</span>
-                    <span class="material-icons-sharp">dark_mode</span>
-                </div>
+                    <span id="light-mode-icon" class="material-icons-sharp active">light_mode</span>
+                    <span id="dark-mode-icon" class="material-icons-sharp">dark_mode</span>
+                </div>                
                 <div class="profile">
                     <div class="info">
                         <p> <b></b></p>
@@ -180,33 +182,37 @@
                 <span><h2>Delivery Focus</h2><span>Deliveries less than 8 Days</span></span>
                 <div class="item-online">
                     <div class="right">
-                        <table style="width: 100%; "class="due_client">
-                           <thead style="text-align: left;">
-                            <tr>
-                                <!-- <th>Client</th> -->
-                                <th>Client</th>
-                                <th>Style</th>
-                                <th>Sewing</th>
-                                <th>Due Date</th>
-                            </tr>
-                        </thead>
-                    <?php 
-                    $sevenDaysFromNow = date('Y-m-d', strtotime('+7 days'));
-                    
-                    $query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, status, contact FROM jobs WHERE delivery_date BETWEEN CURDATE() AND '$sevenDaysFromNow' ORDER BY workID DESC ");
-                    while($row = mysqli_fetch_array($query)){
-                    $fullname = $row['fullname'];
-                    ?>
-                    
-                    <tbody>
-                        <tr>
-                            <td><?php echo $fullname; ?></td>
-                            <td><?php echo $Style; ?></td>
-                            <td><?php echo $sewing; ?></td>
-                            <td><?php echo $delivery_date; ?></td>
-                    </tbody>
-                    <?php 	} ?>
+                        <table style="width: 100%;" class="due_client">
+                            <thead style="text-align: left;">
+                                <tr>
+                                    <th>Client</th>
+                                    <th>Style</th>
+                                    <th>Sewing</th>
+                                    <th>Due Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                $sevenDaysFromNow = date('Y-m-d', strtotime('+7 days'));
+                                
+                                $query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, status, contact FROM jobs WHERE delivery_date BETWEEN CURDATE() AND '$sevenDaysFromNow' ORDER BY workID DESC ");
+                                
+                                while($row = mysqli_fetch_array($query)){
+                                    $fullname = $row['fullname'];
+                                    $style = $row['style'];
+                                    $sewing = $row['sewing'];
+                                    $delivery_date = $row['delivery_date'];
+                                ?>
+                                <tr>
+                                    <td><?php echo $fullname; ?></td>
+                                    <td><?php echo $style; ?></td>
+                                    <td><?php echo $sewing; ?></td>
+                                    <td><?php echo $delivery_date; ?></td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
                         </table>
+                        
                     </div>
                 </div>
                 
