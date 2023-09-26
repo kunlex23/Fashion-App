@@ -9,8 +9,7 @@
     <!-- Material app -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <!-- style -->
-    <link rel="stylesheet" href="css/style.css">
-    
+    <link rel="stylesheet" href="css/styl.css">
 </head>
 
 <body>
@@ -26,23 +25,23 @@
                 </div>
             </div>
             <div class="sideBar">
-                <a href="index.html">
+                <a href="index.php">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="client_records.html">
+                <a href="client_records.php">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Client Records</h3>
                 </a>
-                <a href="newClient.html">
+                <a href="newClient.php" class="active">
                     <span class="material-icons-sharp">person_outline</span>
                     <h3>New Client</h3>
                 </a>
-                <a href="workRecord.html">
+                <a href="workRecord.php">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Work Records</h3>
                 </a>
-                <a href="newWorkentry.html" class="active">
+                <a href="newWorkentry.php">
                     <span class="material-icons-sharp">checkroom</span>
                     <h3>New Work</h3>
                 </a>
@@ -51,45 +50,38 @@
                     <h3></h3>
                 </a>
             </div>
-            </aside>
+        </aside>
         <!------------ END OF ASIDE ------------>
         <main>
 
             <!-- ---------END OF EXAM-------- -->
             <div class="recent-sales">
-                <h1>New Work</h1>
-           <div class="entries">
-            <form class="three-column-form" action="/fashion-app/workData.php" method="POST">
+                <h1>New Client</h1>
+            <form class="five-column-form" action="/fashion-app/userData.php" method="POST">
                 <div class="tray0">
     
-                    <label for="fullname">Full Name:</label>
-                    <select name="fullname" required>
-                        <option value="">Select a client</option>
-                        <?php
-                        require 'config.php';
-                        $sql = "SELECT fullname, contact FROM clients_data";
-                        $result = $conn->query($sql);
+                    <label for="fullname">Fullname:</label>
+                    <input type="text" name="fullname" required><br>
                     
-                        // Generate options for the combo box
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<option value="' . $row["fullname"] . '">' . $row["fullname"] . ' - ' . $row["contact"] . '</option>';
-                            }
-                        }
-                    
-                        ?>
-                    </select>
-                    
-                    
+                    <label for="contact">Contact:</label>
+                    <input type="text" name="contact" required><br>
             
-                    <label for="measurement">Measurement Tailor:</label>
+                    <label for="address">Address:</label>
+                    <input type="text" name="address" required><br>
+            
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" required><br>
+            
+                    <label for="gender">Gender:</label>
+                    <select name="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select><br>
+                    
+                </div>
+                <div class="tray1">
+                    <label for="measurement">Measurement by:</label>
                     <input type="text" name="measurement" required><br>
-            
-                    <label for="sewing">Sewing Tailor:</label>
-                    <input type="text" name="sewing" required><br>
-            
-                    <label for="style">Style:</label>
-                    <input type="text" name="style" required><br>
             
                     <label for="shoulder">Shoulder:</label>
                     <input type="text" name="shoulder" required><br>
@@ -103,8 +95,9 @@
                     <label for="burst">Burst:</label>
                     <input type="text" name="burst" required><br>
             
+                    
                 </div>
-                <div class="tray1">
+                <div class="tray2">
                     <label for="burst_span">Burst Span:</label>
                     <input type="text" name="burst_span" required><br>
             
@@ -119,7 +112,9 @@
     
                     <label for="blouse_waist">Blouse Waist:</label>
                     <input type="text" name="blouse_waist" required><br>
-    
+                </div>
+
+                <div class="tray3">
                     <label for="back_half_cut">Back Half Cut:</label>
                     <input type="text" name="back_half_cut" required><br>
     
@@ -129,15 +124,14 @@
                     <label for="round_sleeve">Round Sleeve:</label>
                     <input type="text" name="round_sleeve" required><br>
     
-                    
-                </div>
-                <div class="tray2">
                     <label for="sleeve_lenght">Sleeve Lenght:</label>
                     <input type="text" name="sleeve_lenght" required><br>
     
                     <label for="shoulder2knee">Shoulder to Knee:</label>
                     <input type="text" name="shoulder2knee" required><br>
-                        
+                </div>
+                <div class="tray4">
+
                     <label for="skirt_waist">Skirt Waist:</label>
                     <input type="text" name="skirt_waist" required><br>
                         
@@ -152,9 +146,6 @@
     
                     <label for="round_knee">Round Knee:</label>
                     <input type="text" name="round_knee" required><br>
-    
-                    <label for="delivery_date">Delivery Date:</label>
-                    <input type="date" name="delivery_date" required><br>
     
                     
                 </div>
@@ -173,40 +164,14 @@
                     <span class="material-icons-sharp active">light_mode</span>
                     <span class="material-icons-sharp">dark_mode</span>
                 </div>
-            </div>            <!-- -----------END OF RECENT UPDATE--------------- -->
+            </div> <!-- -----------END OF RECENT UPDATE--------------- -->
             <div class="sales-analytics">
 
-                <a href="workRecord.html">
-                    <div class="item add-product">
-                        <div>
-                            <span class="material-icons-sharp">record</span>
-                            <h3>Work Records</h3>
-                        </div>
-                    </div>
-                </a>
                 
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const status = urlParams.get('status');
-    
-    if (status === 'success') {
-        const notification = document.getElementById("notification");
-        notification.classList.add("show");
-        
-        // Hide the notification after a certain time (e.g., 5 seconds)
-        setTimeout(function() {
-            notification.classList.remove("show");
-        }, 5000);
-    }
-});
-
-    </script>
     <script src="script/scrip.js"></script>
-    
 </body>
 
 </html>

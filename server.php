@@ -2,7 +2,7 @@
 
                             require 'config.php';
                             
-                            $sql = "SELECT COUNT(*) AS totalClients FROM clients_data";
+                            $sql = "SELECT COUNT(*) AS totalClients FROM client_info";
                             // where order_date > now() - interval 1 day;
                             if ($result = $conn->query($sql)) {
                               while ($row = $result->fetch_assoc()) {

@@ -25,23 +25,23 @@
                 </div>
             </div>
             <div class="sideBar">
-                <a href="index.html">
+                <a href="index.php">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="client_records.html" class="active">
+                <a href="client_records.php" class="active">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Client Records</h3>
                 </a>
-                <a href="newClient.html">
+                <a href="newClient.php">
                     <span class="material-icons-sharp">person_outline</span>
                     <h3>New Client</h3>
                 </a>
-                <a href="workRecord.html">
+                <a href="workRecord.php">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Work Records</h3>
                 </a>
-                <a href="newWorkentry.html">
+                <a href="newWorkentry.php">
                     <span class="material-icons-sharp">checkroom</span>
                     <h3>New Work</h3>
                 </a>
@@ -70,7 +70,7 @@
                     </thead>
                     <?php 
                     require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT clientID, fullname, contact, address, email, gender,date FROM clients_data ORDER BY fullname ASC"); 
+                	$query = mysqli_query($conn, "SELECT fullname, contact, address, email, gender,date FROM client_info ORDER BY fullname ASC"); 
                 	while($row = mysqli_fetch_array($query)){
                 
                 		$fullname = $row['fullname'];
@@ -106,7 +106,7 @@
             </div>            <!-- -----------END OF RECENT UPDATE--------------- -->
             <div class="sales-analytics">
 
-                <a href="newWorkentry.html">
+                <a href="newWorkentry.php">
                     <div class="item add-product">
                         <div>
                             <span class="material-icons-sharp">add</span>
@@ -117,7 +117,7 @@
                 
             </div><div class="sales-analytics">
 
-                <a href="newClient.html">
+                <a href="newClient.php">
                     <div class="item add-product">
                         <div>
                             <span class="material-icons-sharp">add</span>

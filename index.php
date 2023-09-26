@@ -26,23 +26,23 @@
                 </div>
             </div>
             <div class="sideBar">
-                <a href="index.html" class="active">
+                <a href="index.php" class="active">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="client_records.html">
+                <a href="client_records.php">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Client Records</h3>
                 </a>
-                <a href="newClient.html">
+                <a href="newClient.php">
                     <span class="material-icons-sharp">person_outline</span>
                     <h3>New Client</h3>
                 </a>
-                <a href="workRecord.html">
+                <a href="workRecord.php">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Work Records</h3>
                 </a>
-                <a href="newWorkentry.html">
+                <a href="newWorkentry.php">
                     <span class="material-icons-sharp">checkroom</span>
                     <h3>New Work</h3>
                 </a>
@@ -86,7 +86,7 @@
                     <div class="income">
                     <div class="middle">
                         <div class="left">
-                            <a href="work-in-prog.html"><h3>Total Work in Progress</h3></a>
+                            <a href="work-in-prog.php"><h3>Total Work in Progress</h3></a>
                             <div id="link_wrapper2">
                             
                             </div>
@@ -104,47 +104,40 @@
                 <table>
                     <thead>
                         <tr>
-                            <!-- <th>Client</th> -->
                             <th>Client</th>
                             <th>Style</th>
-                            <th>M. Tailor</th>
                             <th>Sewing</th>
                             <th>Entry Date</th>
                             <th>Due Date</th>
-                            <th>status</th>
-                            <th>Contact</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <?php 
                     require 'config.php'; 
-                	$query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, StatusC, contact FROM jobs ORDER BY workID DESC LIMIT 10 ");
+                	$query = mysqli_query($conn, "SELECT fullname, Style, Sewing, Entry_Date, Due_Date, StatusC FROM work ORDER BY fullname DESC LIMIT 10 ");
                 	while($row = mysqli_fetch_array($query)){
                 
                 		$fullname = $row['fullname'];
-                		$Style = $row['style'];
-                        $measurement = $row['measurement'];
-                        $sewing = $row['sewing'];
-                        $date = $row['date'];
-                        $delivery_date = $row['delivery_date'];
+                		$Style = $row['Style'];
+                        $Sewing = $row['Sewing'];
+                        $Entry_Date = $row['Entry_Date'];
+                        $Due_Date = $row['Due_Date'];
                         $StatusC = $row['StatusC'];
-                        $contact = $row['contact'];
                         
                         ?>
                             <tbody>
                                 <tr>
                                     <td><?php echo $fullname; ?></td>
                                     <td><?php echo $Style; ?></td>
-                                    <td><?php echo $measurement; ?></td>
-                                    <td><?php echo $sewing; ?></td>
-                                    <td><?php echo $date; ?></td>
-                                    <td><?php echo $delivery_date; ?></td>
+                                    <td><?php echo $Sewing; ?></td>
+                                    <td><?php echo $Entry_Date; ?></td>
+                                    <td><?php echo $Due_Date; ?></td>
                                     <td><?php echo $StatusC; ?></td>
-                                    <td><?php echo $contact; ?></td>
                             </tbody>
                     <?php 	} ?>
                 </table>
 
-                <a href="workRecord.html">Show all</a>
+                <a href="workRecord.php">Show all</a>
         </main>
         <!-- ----------END OF MAIN----------- -->
         <div class="right">
@@ -166,14 +159,14 @@
             
             <div class="sales-analytics">
 
-                <a href="newClient.html">
+                <a href="newClient.php">
                     <div class="item add-product"><div>
                     <span class="material-icons-sharp">add</span>
                     <h3>New Client</h3>
                     </div></div>
                     </a>
 
-                    <a href="newworkentry.html">
+                    <a href="newworkentry.php">
                         <div class="item add-product"><div>
                         <span class="material-icons-sharp">add</span>
                         <h3>New Work</h3>
@@ -195,22 +188,30 @@
                                 <?php 
                                 $sevenDaysFromNow = date('Y-m-d', strtotime('+7 days'));
                                 
-                                $query = mysqli_query($conn, "SELECT workID, fullname, style, measurement, sewing, date, delivery_date, status, contact FROM jobs WHERE delivery_date BETWEEN CURDATE() AND '$sevenDaysFromNow' ORDER BY workID DESC ");
+                                $query = mysqli_query($conn, "SELECT fullname, style, sewing, Due_Date, status FROM work WHERE Due_Date BETWEEN CURDATE() AND '$sevenDaysFromNow' ORDER BY fullname ASC ");
                                 
                                 while($row = mysqli_fetch_array($query)){
                                     $fullname = $row['fullname'];
                                     $style = $row['style'];
                                     $sewing = $row['sewing'];
-                                    $delivery_date = $row['delivery_date'];
+                                    $Due_Date = $row['Due_Date'];
+                                    $status = $row['status'];
+                                    
+                                    // Check if status is not equal to 0 before displaying the row
+                                    if ($status != 0) {
                                 ?>
                                 <tr>
                                     <td><?php echo $fullname; ?></td>
                                     <td><?php echo $style; ?></td>
                                     <td><?php echo $sewing; ?></td>
-                                    <td><?php echo $delivery_date; ?></td>
+                                    <td><?php echo $Due_Date; ?></td>
                                 </tr>
-                                <?php } ?>
+                                <?php 
+                                    }
+                                }
+                                ?>
                             </tbody>
+                            
                         </table>
                         
                     </div>

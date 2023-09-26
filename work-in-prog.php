@@ -40,23 +40,23 @@ td:nth-child(even) {
                 </div>
             </div>
             <div class="sideBar">
-                <a href="index.html">
+                <a href="index.php">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="client_records.html">
+                <a href="client_records.php">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Client Records</h3>
                 </a>
-                <a href="newClient.html">
+                <a href="newClient.php">
                     <span class="material-icons-sharp">person_outline</span>
                     <h3>New Client</h3>
                 </a>
-                <a href="workRecord.html" class="active">
+                <a href="workRecord.php" class="active">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Work Records</h3>
                 </a>
-                <a href="newWorkentry.html">
+                <a href="newWorkentry.php">
                     <span class="material-icons-sharp">checkroom</span>
                     <h3>New Work</h3>
                 </a>
@@ -132,7 +132,7 @@ td:nth-child(even) {
                 </div>            <!-- -----------END OF RECENT UPDATE--------------- -->
                 <div class="sales-analytics">
 
-                <a href="newWorkentry.html">
+                <a href="newWorkentry.php">
                     <div class="item add-product">
                         <div>
                             <span class="material-icons-sharp">add</span>
@@ -143,7 +143,7 @@ td:nth-child(even) {
                 
              </div><div class="sales-analytics">
 
-                <a href="newClient.html">
+                <a href="newClient.php">
                     <div class="item add-product">
                         <div>
                             <span class="material-icons-sharp">add</span>

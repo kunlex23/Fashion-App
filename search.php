@@ -40,23 +40,23 @@ td:nth-child(even) {
                 </div>
             </div>
             <div class="sideBar">
-                <a href="index.html">
+                <a href="index.php">
                     <span class="material-icons-sharp">grid_view</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="client_records.html">
+                <a href="client_records.php">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Client Records</h3>
                 </a>
-                <a href="newClient.html">
+                <a href="newClient.php">
                     <span class="material-icons-sharp">person_outline</span>
                     <h3>New Client</h3>
                 </a>
-                <a href="workRecord.html" class="active">
+                <a href="workRecord.php" class="active">
                     <span class="material-icons-sharp">local_library</span>
                     <h3>Work Records</h3>
                 </a>
-                <a href="newWorkentry.html">
+                <a href="newWorkentry.php">
                     <span class="material-icons-sharp">checkroom</span>
                     <h3>New Work</h3>
                 </a>
@@ -81,7 +81,7 @@ if (isset($_GET['fullname'])) {
     $fullname = $conn->real_escape_string($_GET['fullname']);
 
     // Prepare the SQL statement using a prepared statement
-    $sql = "SELECT * FROM jobs WHERE fullname = ?";
+    $sql = "SELECT * FROM work WHERE fullname = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $fullname);
     $stmt->execute();
@@ -89,16 +89,24 @@ if (isset($_GET['fullname'])) {
 
     if ($result->num_rows > 0) {
         echo '<table border="1">';
-        echo '<tr><th>Fullname</th><th>Style</th><th>Status</th><th>Entry Date</th><th>Delivery Date</th></tr>';
+        echo '<tr>
+            <th>Fullname</th>
+            <th>Style</th>
+            <th>Status</th>
+            <th>Entry Date</th>
+            <th>Delivery Date</th>
+            <th>Status</th>
+            </tr>';
         
         // Output data of each row
         while ($row = $result->fetch_assoc()) {
             echo '<tr>';
             echo '<td>' . htmlspecialchars($row["fullname"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["style"]) . '</td>';
+            echo '<td>' . htmlspecialchars($row["Style"]) . '</td>';
             echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["date"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["delivery_date"]) . '</td>';
+            echo '<td>' . htmlspecialchars($row["Entry_Date"]) . '</td>';
+            echo '<td>' . htmlspecialchars($row["Due_Date"]) . '</td>';
+            echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
             // Output other job-related information here as needed
             echo '</tr>';
         }
@@ -131,7 +139,7 @@ if (isset($_GET['fullname'])) {
                 </div>            <!-- -----------END OF RECENT UPDATE--------------- -->
                 <div class="sales-analytics">
 
-                <a href="newWorkentry.html">
+                <a href="newWorkentry.php">
                     <div class="item add-product">
                         <div>
                             <span class="material-icons-sharp">add</span>
@@ -142,7 +150,7 @@ if (isset($_GET['fullname'])) {
                 
              </div><div class="sales-analytics">
 
-                <a href="newClient.html">
+                <a href="newClient.php">
                     <div class="item add-product">
                         <div>
                             <span class="material-icons-sharp">add</span>
@@ -154,8 +162,22 @@ if (isset($_GET['fullname'])) {
             </div>
             <form action="/fashion-app/search.php" method="GET">
 
-                <label for="fullname">Enter Client's Name and Search:</label>
-                <input type="text" name="fullname" required><br>
+            <label for="fullname">Full Name:</label>
+                            <select name="fullname" required>
+                                <option value="">Select a client</option>
+                                <?php
+                        require 'config.php';
+                        $sql = "SELECT fullname, contact FROM client_info";
+                        $result = $conn->query($sql);
+                    
+                        // Generate options for the combo box
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo '<option value="' . $row["fullname"] . '">' . $row["fullname"] . ' - ' . $row["contact"] . '</option>';
+                            }
+                        }
+                    
+                        ?>
                 <input type="submit" value="Search">
             </form>
         </div>
