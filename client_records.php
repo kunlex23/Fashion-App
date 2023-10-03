@@ -17,8 +17,8 @@
         <aside>
             <div class="top">
                 <div class="logo">
-                    <!-- <img src="./images/logo.jpeg"> -->
-                    <h2>ZIB<span class="compel">AH</span></h2>
+                <img src="./images/logo.png">
+                    <!-- <h2>ZIB<span class="compel">AH</span></h2> -->
                     <!-- <h2>Name</h2> -->
                 </div>
                 <div class="closeBTN" id="close-btn"><span class="material-icons-sharp">close</span>
