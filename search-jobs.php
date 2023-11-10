@@ -124,6 +124,7 @@ if ($result->num_rows > 0) {
         <th>Status</th>
         <th>Delete</th>
         <th>Action</th>
+        <th>Edit</th>
                             
         <!-- Add more columns as needed -->
     </tr>";
@@ -136,6 +137,8 @@ if ($result->num_rows > 0) {
             <td>".$row['StatusC']."</td>
             <td ><a href='?fullname=$fullname&delete_id=".$row['workID']."' onclick='return confirm(\"Are you sure you want to delete this record?\")'>Delete</a></td>
             <td ><a href='?fullname=$fullname&status_id=".$row['workID']."' onclick='return confirm(\"By clicking Ok you confirm that this work is completed\")'>Done</a></td>
+            <td><a href='editRecord.php?id=" . $row["workID"] . '">Edit</a></td>
+            
         </tr>";
     }
     echo "</table>";
@@ -189,22 +192,25 @@ if ($result->num_rows > 0) {
         echo "Shoulder to under burst: " . $row['shoulder2under_burst'] . "<br>";
         echo "Burst: " . $row['burst'] . "<br>";
         echo "Burst span: " . $row['burst_span'] . "<br>";
-        echo "Round uder burst: " . $row['round_uder_burst'] . "<br>";
-        echo "Blouse length: " . $row['blouse_length'] . "<br>";
+        echo "Round under burst: " . $row['round_uder_burst'] . "<br>";
+        echo "Blouse length: " . $row['blouse_lenght'] . "<br>";
         echo "Blouse hips: " . $row['blouse_hips'] . "<br>";
+        echo "Arm Hole: " . $row['arm_hole'] . "<br>";
         echo "Blouse waist: " . $row['blouse_waist'] . "<br>";
         echo "Back half cut: " . $row['back_half_cut'] . "<br>";
         echo "Neck depth: " . $row['neck_depth'] . "<br>";
         echo "Round sleeve: " . $row['round_sleeve'] . "<br>";
-        echo "Sleevelength: " . $row['sleeve_length'] . "<br>";
+        echo "Sleeve length: " . $row['sleeve_lenght'] . "<br>";
         echo "Shoulder to knee: " . $row['shoulder2knee'] . "<br>";
         echo "Skirt waist: " . $row['skirt_waist'] . "<br>";
         echo "Skirt length: " . $row['skirt_length'] . "<br>";
         echo "Hips: " . $row['hips'] . "<br>";
         echo "Full length: " . $row['full_length'] . "<br>";
-        echo "Round knee: " . $row['round_knee'] . "<br>";
+        echo "Trouser Length: " . $row['trouser_length'] . "<br>";
        
         echo "<br>"; // Add a line break between record pairs
+        echo "<a href='editClient.php?clientID=" . $row['clientID'] . "'>Edit</a>";
+    echo "<br><br>";
     }
 } else {
     echo "No results found.";

@@ -9,10 +9,11 @@ $Due_Date = $_POST['delivery_date'];
 $StatusC = 'In Progress';
 $status = '1';
 $notes = $_POST['notes'];
+$clientID = $_POST['clientID'];
 
 // Prepare and execute the SQL statement to insert the data
-$sql = "INSERT INTO work (fullname, style, sewing, Due_Date, status, StatusC, notes)
-        VALUES ('$fullname', '$style', '$sewing', '$Due_Date', '$status','$StatusC','$notes')";
+$sql = "INSERT INTO work (fullname, style, sewing, Due_Date, status, StatusC, notes, clientID)
+        VALUES ('$fullname', '$style', '$sewing', '$Due_Date', '$status','$StatusC','$notes','$clientID')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully!";

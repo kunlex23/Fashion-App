@@ -1,3 +1,87 @@
+<?php
+require 'config.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $clientID = $_POST['clientID'];
+    $name = $_POST['fullname']; // Change 'name' to 'fullname'
+    $contact = $_POST['contact'];
+    $address = $_POST['address'];
+    $email = $_POST['email'];
+    $gender = $_POST['gender'];
+    $measurement = $_POST['measurement'];
+    // ... (other fields)
+
+    // Perform the update query to update client data
+    $sql = "UPDATE client_info SET
+                fullname = '$name',  // Update 'name' to 'fullname'
+                contact = '$contact',
+                address = '$address',
+                email = '$email',
+                gender = '$gender',
+                measurement = '$measurement',
+                // ... (other fields)
+            WHERE clientID = '$clientID'";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Client data updated successfully.";
+    } else {
+        echo "Error updating client data: " . $conn->error;
+    }
+} else {
+    echo "Invalid request method.";
+}
+
+$conn->close();
+?>
+
+
+
+
+
+============================================
+fullname`, `contact`, `address`, `email`, 
+`gender`, `measurement`, `shoulder`, `shoulder2burst`, 
+`shoulder2under_burst`, `burst`, `burst_span`, `round_uder_burst`, 
+`blouse_length`, `blouse_hips`,`arm_hole` `blouse_waist`, `back_half_cut`,
+ `neck_depth`, `round_sleeve`, `sleeve_length`, `shoulder2knee`, 
+ `skirt_waist`, `skirt_length`, `hips`, `full_length`, `trouser_length`
+ lenght
+ ======================================================
+ <?php
+    require 'config.php';
+
+    if (isset($_GET['clientID'])) {
+        $clientID = $_GET['clientID'];
+
+        // Fetch the client data by clientID
+        $sql = "SELECT * FROM client_info WHERE fullname = '$clientID'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            // Display a form with input fields to edit the data
+            echo '<form method="post" action="updateClient.php">';
+            echo '<input type="hidden" name="clientID" value="' . $row['fullname'] . '">';
+            // Add input fields for each data field you want to edit
+            echo 'Name: <input type="text" name="name" value="' . $row['fullname'] . '"><br>';
+            echo 'Contact: <input type="text" name="contact" value="' . $row['contact'] . '"><br>';
+            // Add more input fields for other data as needed
+            echo '<input type="submit" value="Save Changes">';
+            echo '</form>';
+        } else {
+            echo "Client not found.";
+        }
+    } else {
+        echo "Invalid client ID.";
+    }
+
+    $conn->close();
+    ?>
+
+
+
+
+
 SELECT `clientID`, `fullname`, `contact`, `address`, `email`, 
 `gender`, `measurement`, `shoulder`, `shoulder2burst`, 
 `shoulder2under_burst`, `burst`, `burst_span`, `round_uder_burst`, 

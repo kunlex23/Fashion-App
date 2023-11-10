@@ -29,6 +29,7 @@ if ($checkResult->num_rows > 0) {
     $round_uder_burst = $_POST['round_uder_burst'];
     $blouse_lenght = $_POST['blouse_lenght'];
     $blouse_hips = $_POST['blouse_hips'];
+    $arm_hole = $_POST['arm_hole'];
     $blouse_waist = $_POST['blouse_waist'];
     $back_half_cut = $_POST['back_half_cut'];
     $neck_depth = $_POST['neck_depth'];
@@ -39,11 +40,11 @@ if ($checkResult->num_rows > 0) {
     $skirt_length = $_POST['skirt_length'];
     $hips = $_POST['hips'];
     $full_length = $_POST['full_length'];
-    $round_knee = $_POST['round_knee'];
+    $trouser_length = $_POST['trouser_length'];
 
     // Prepare and execute the SQL statement to insert the data
-    $sql = "INSERT INTO client_info (fullname, contact, address, email, gender, measurement, shoulder,shoulder2burst,shoulder2under_burst,burst,burst_span,round_uder_burst,blouse_lenght,blouse_hips,blouse_waist,back_half_cut,neck_depth,round_sleeve,sleeve_lenght,shoulder2knee,skirt_waist,skirt_length,hips,full_length,round_knee)
-            VALUES ('$fullname', '$contact','$address', '$email', '$gender', '$measurement','$shoulder','$shoulder2burst','$shoulder2under_burst','$burst','$burst_span','$round_uder_burst','$blouse_lenght','$blouse_hips','$blouse_waist','$back_half_cut','$neck_depth','$round_sleeve','$sleeve_lenght','$shoulder2knee','$skirt_waist','$skirt_length','$hips','$full_length','$round_knee')";
+    $sql = "INSERT INTO client_info (fullname, contact, address, email, gender, measurement, shoulder,shoulder2burst,shoulder2under_burst,burst,burst_span,round_uder_burst,blouse_lenght,arm_hole,blouse_hips,blouse_waist,back_half_cut,neck_depth,round_sleeve,sleeve_lenght,shoulder2knee,skirt_waist,skirt_length,hips,full_length,trouser_length)
+            VALUES ('$fullname', '$contact','$address', '$email', '$gender', '$measurement','$shoulder','$shoulder2burst','$shoulder2under_burst','$burst','$burst_span','$round_uder_burst','$blouse_lenght','$arm_hole','$blouse_hips','$blouse_waist','$back_half_cut','$neck_depth','$round_sleeve','$sleeve_lenght','$shoulder2knee','$skirt_waist','$skirt_length','$hips','$full_length','$trouser_length')";
 
     if ($conn->query($sql) === TRUE) {
         echo '<script>alert("New record created successfully!");</script>';

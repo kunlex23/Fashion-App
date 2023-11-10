@@ -67,16 +67,17 @@
                                 <option value="">Select a client</option>
                                 <?php
                         require 'config.php';
-                        $sql = "SELECT fullname, contact FROM client_info";
+                        $sql = "SELECT clientID, fullname, contact FROM client_info";
                         $result = $conn->query($sql);
                     
                         // Generate options for the combo box
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo '<option value="' . $row["fullname"] . '">' . $row["fullname"] . ' - ' . $row["contact"] . '</option>';
+                                echo '<input type="hidden" name="clientID" value="' . $row['clientID'] . '">';
                             }
                         }
-                    
+                        
                         ?>
                             </select>
                             <label for="style">Style:</label>

@@ -110,11 +110,16 @@
                     <label for="blouse_hips">Blouse Hips:</label>
                     <input type="text" name="blouse_hips" required><br>
     
-                    <label for="blouse_waist">Blouse Waist:</label>
-                    <input type="text" name="blouse_waist" required><br>
+                    
+    
+                    <label for="arm_hole">Arm Hole:</label>
+                    <input type="text" name="arm_hole" required><br>
                 </div>
 
                 <div class="tray3">
+                    <label for="blouse_waist">Blouse Waist:</label>
+                    <input type="text" name="blouse_waist" required><br>
+
                     <label for="back_half_cut">Back Half Cut:</label>
                     <input type="text" name="back_half_cut" required><br>
     
@@ -127,10 +132,11 @@
                     <label for="sleeve_lenght">Sleeve Lenght:</label>
                     <input type="text" name="sleeve_lenght" required><br>
     
-                    <label for="shoulder2knee">Shoulder to Knee:</label>
-                    <input type="text" name="shoulder2knee" required><br>
+                    
                 </div>
                 <div class="tray4">
+                    <label for="shoulder2knee">Shoulder to Knee:</label>
+                    <input type="text" name="shoulder2knee" required><br>
 
                     <label for="skirt_waist">Skirt Waist:</label>
                     <input type="text" name="skirt_waist" required><br>
@@ -144,8 +150,8 @@
                     <label for="full_length">Full Length:</label>
                     <input type="text" name="full_length" required><br>
     
-                    <label for="round_knee">Round Knee:</label>
-                    <input type="text" name="round_knee" required><br>
+                    <label for="trouser_length">Trouser Length:</label>
+                    <input type="text" name="trouser_length" required><br>
     
                     
                 </div>

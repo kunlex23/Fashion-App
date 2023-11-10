@@ -71,59 +71,54 @@ td:nth-child(even) {
 
             <!-- ---------END OF EXAM-------- -->
             <div class="recent-sales">
-                <h1>Searched Records</h1>
-                <?php
+    <!-- <h1>Edit Work Record</h1> -->
+
+    <?php
+// Include your database connection configuration (config.php)
 require 'config.php';
 
-if (isset($_GET['fullname'])) {
-    $fullname = $conn->real_escape_string($_GET['fullname']);
+// Check if a workID parameter is provided in the URL
+if (isset($_GET['id'])) {
+    $workID = $_GET['id'];
 
-    $sql = "SELECT * FROM work WHERE fullname = ?";
+    // Prepare and execute a SQL query to retrieve the record by its workID
+    $sql = "SELECT * FROM work WHERE workID = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $fullname);
+
+    // You need to specify the data type of the parameter (i for integer in this case)
+    $stmt->bind_param("i", $workID);
+
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        echo '<table border="1">';
-        echo '<tr>
-            <th>Fullname</th>
-            <th>Style</th>
-            <th>Status</th>
-            <th>Entry Date</th>
-            <th>Delivery Date</th>
-            <th>Status</th>
-            <th>Edit</th>
-            </tr>';
-        
-        while ($row = $result->fetch_assoc()) {
-            echo '<tr>';
-            echo '<td>' . htmlspecialchars($row["fullname"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["Style"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["Entry_Date"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["Due_Date"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
-            
-            // Add an anchor tag for editing
-            echo '<td><a href="editRecord.php?id=' . $row["workID"] . '">Edit</a></td>';
-            
-            echo '</tr>';
-        }
-        
-        echo '</table>';
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+    
+        echo '<h2>Edit ' . htmlspecialchars($row["fullname"]) . ' Word</h2><br>'; // Display the fullname as text// Display a form for editing the record
+        echo '<form action="updateRecord.php" method="POST">';
+        echo 'Style: <input type="text" name="style" value="' . $row["Style"] . '"><br>';
+        echo 'Sewing: <input type="text" name="Sewing" value="' . $row["Sewing"] . '"><br>';
+        echo 'Delivery Date: <input type="date" name="delivery_date" value="' . $row["Due_Date"] . '"><br>';
+        echo 'Note: <input type="text" name="note" value="' . $row["notes"] . '"><br>'; // Correct the field name to "note"
+        echo '<input type="hidden" name="workID" value="' . $row["workID"] . '">';
+        echo '<input type="submit" value="Save Changes">';
+        echo '</form>';
     } else {
-        echo "No record found!";
+        echo "Record not found.";
     }
+    
 
+    // Close the prepared statement
     $stmt->close();
-    $conn->close();
+} else {
+    echo "No workID provided in the URL.";
 }
+
+// Close the database connection
+$conn->close();
 ?>
 
-
-
-                 </main>
+     </main>
                 <!-- ----------END OF MAIN----------- -->
                 <div class="right">
                 <div class="top">
