@@ -124,22 +124,35 @@ if ($result->num_rows > 0) {
         <th>Status</th>
         <th>Delete</th>
         <th>Action</th>
-        <th>Edit</th>
                             
         <!-- Add more columns as needed -->
     </tr>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>
-            <td>".$row['Style']."</td>
-            <td>".$row['Sewing']."</td>
-            <td>".$row['Entry_Date']."</td>
-            <td>".$row['Due_Date']."</td>
-            <td>".$row['StatusC']."</td>
-            <td ><a href='?fullname=$fullname&delete_id=".$row['workID']."' onclick='return confirm(\"Are you sure you want to delete this record?\")'>Delete</a></td>
-            <td ><a href='?fullname=$fullname&status_id=".$row['workID']."' onclick='return confirm(\"By clicking Ok you confirm that this work is completed\")'>Done</a></td>
-            <td><a href='editRecord.php?id=" . $row["workID"] . '">Edit</a></td>
+    // while ($row = $result->fetch_assoc()) {
+    //     echo "<tr>
+    //         <td>".$row['Style']."</td>
+    //         <td>".$row['Sewing']."</td>
+    //         <td>".$row['Entry_Date']."</td>
+    //         <td>".$row['Due_Date']."</td>
+    //         <td>".$row['StatusC']."</td>
+    //         <td ><a href='?fullname=$fullname&delete_id=".$row['workID']."' onclick='return confirm(\"Are you sure you want to delete this record? This action is NOT reversible\")'>Delete</a></td>
+    //         <td ><a href='?fullname=$fullname&status_id=".$row['workID']."' onclick='return confirm(\"By clicking Ok you confirm that this work is completed. This action is NOT reversible\")'>Done</a></td>
             
-        </tr>";
+    //     </tr>";
+    // }
+    while ($row = $result->fetch_assoc()) {
+        echo '<tr>';
+        echo '<td>' . htmlspecialchars($row["Style"]) . '</td>';
+        echo '<td>' . htmlspecialchars($row["Sewing"]) . '</td>';
+        echo '<td>' . htmlspecialchars($row["Due_Date"]) . '</td>';
+        echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
+        // Delete link
+        echo '<td><a href="?fullname=$fullname&delete_id=' . $row['workID'] . '" onclick="return confirm(\'Are you sure you want to delete this record? This action is NOT reversible\')">Delete</a></td>';
+        // Done link
+        echo '<td><a href="?fullname=$fullname&status_id=' . $row['workID'] . '" onclick="return confirm(\'By clicking Ok you confirm that this work is completed. This action is NOT reversible\')">Done</a></td>';    
+        // Add an anchor tag for editing
+        echo '<td><a href="editRecord.php?id=' . $row["workID"] . '">Edit</a></td>';
+        
+        echo '</tr>';
     }
     echo "</table>";
 } else {

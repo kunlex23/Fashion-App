@@ -93,23 +93,29 @@ if (isset($_GET['fullname'])) {
             <th>Entry Date</th>
             <th>Delivery Date</th>
             <th>Status</th>
+            <th>Delete</th>
+            <th>Action</th>
             <th>Edit</th>
             </tr>';
         
-        while ($row = $result->fetch_assoc()) {
-            echo '<tr>';
-            echo '<td>' . htmlspecialchars($row["fullname"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["Style"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["Entry_Date"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["Due_Date"]) . '</td>';
-            echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
+            while ($row = $result->fetch_assoc()) {
+                echo '<tr>';
+                echo '<td>' . htmlspecialchars($row["fullname"]) . '</td>';
+                echo '<td>' . htmlspecialchars($row["Style"]) . '</td>';
+                echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
+                echo '<td>' . htmlspecialchars($row["Entry_Date"]) . '</td>';
+                echo '<td>' . htmlspecialchars($row["Due_Date"]) . '</td>';
+                echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
+                // Delete link
+                echo '<td><a href="?fullname=$fullname&delete_id=' . $row['workID'] . '" onclick="return confirm(\'Are you sure you want to delete this record? This action is NOT reversible\')">Delete</a></td>';
+                // Done link
+                echo '<td><a href="?fullname=$fullname&status_id=' . $row['workID'] . '" onclick="return confirm(\'By clicking Ok you confirm that this work is completed. This action is NOT reversible\')">Done</a></td>';    
+                // Add an anchor tag for editing
+                echo '<td><a href="editRecord.php?id=' . $row["workID"] . '">Edit</a></td>';
+                
+                echo '</tr>';
+            }
             
-            // Add an anchor tag for editing
-            echo '<td><a href="editRecord.php?id=' . $row["workID"] . '">Edit</a></td>';
-            
-            echo '</tr>';
-        }
         
         echo '</table>';
     } else {
