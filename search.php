@@ -74,6 +74,34 @@ td:nth-child(even) {
                 <h1>Searched Records</h1>
                 <?php
 require 'config.php';
+$fullname = $_GET['fullname'];
+
+if (isset($_GET['delete_id'])) {
+    $deleteId = $_GET['delete_id'];
+    // Perform the deletion query here
+    $deleteSql = "DELETE FROM work WHERE workID = $deleteId";
+
+    if ($conn->query($deleteSql) === TRUE) {
+        echo "Record deleted successfully.";
+        // You can add a redirect here if needed
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+}
+
+if (isset($_GET['status_id'])) {
+    $status_id = $_GET['status_id'];
+
+    // Perform the update query here
+    $statusSql = "UPDATE work SET Status = '0', StatusC = 'Done' WHERE workID = $status_id";
+
+    if ($conn->query($statusSql) === TRUE) {
+        echo "Record updated successfully.";
+        // You can add a redirect here if needed
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+}
 
 if (isset($_GET['fullname'])) {
     $fullname = $conn->real_escape_string($_GET['fullname']);
@@ -119,7 +147,7 @@ if (isset($_GET['fullname'])) {
         
         echo '</table>';
     } else {
-        echo "No record found!";
+        // echo "No record found!";
     }
 
     $stmt->close();

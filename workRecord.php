@@ -88,12 +88,26 @@
                             <th>Entry Date</th>
                             <th>Due Date</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
                         <?php 
                         require 'config.php'; 
-                        $query = mysqli_query($conn, "SELECT fullname, Style, Sewing, Entry_Date, Due_Date, StatusC FROM work ORDER BY workID DESC");
+                        if (isset($_GET['status_id'])) {
+                            $status_id = $_GET['status_id'];
+                        
+                            // Perform the update query here
+                            $statusSql = "UPDATE work SET Status = '0', StatusC = 'Done' WHERE workID = $status_id";
+                        
+                            if ($conn->query($statusSql) === TRUE) {
+                                echo "Record updated successfully.";
+                                // You can add a redirect here if needed
+                            } else {
+                                echo "Error updating record: " . $conn->error;
+                            }
+                        }
+                        $query = mysqli_query($conn, "SELECT workID, fullname, Style, Sewing, Entry_Date, Due_Date, StatusC FROM work ORDER BY workID DESC");
                         while($row = mysqli_fetch_array($query)){
                             $fullname = $row['fullname'];
                             $Style = $row['Style'];
@@ -101,6 +115,7 @@
                             $Entry_Date = $row['Entry_Date'];
                             $Due_Date = $row['Due_Date'];
                             $StatusC = $row['StatusC'];
+                            $workID = $row['workID'];
                         ?>
                         <tr>
                             <td> <?php echo $fullname; ?></td>
@@ -117,7 +132,18 @@
                             <td>
                                 <?php echo $StatusC; ?>
                             </td>
+                            <td>
+                            <?php
+                            $confirmationMessage = 'By clicking Ok you confirm that this work is completed. This action is NOT reversible';
+                            $link = "?fullname=$fullname&status_id=$workID";
+                            echo '<a href="' . $link . '" onclick="return confirm(\'' . $confirmationMessage . '\')">Done</a>';
+                            ?>
+
+                        </td>
                         </tr>
+                    
+                           
+
                         <?php } ?>
                     </tbody>
                 </table>
@@ -211,13 +237,13 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var statusFilter = document.getElementById('statusFilter');
-        var tableRows = document.querySelectorAll('tbody tr');
+        var tableRows = document.querySelectorAll('#table-body tr');
 
         statusFilter.addEventListener('change', function () {
             var selectedStatus = statusFilter.value.toLowerCase();
 
             tableRows.forEach(function (row) {
-                var rowStatus = row.querySelector('td:last-child').textContent.toLowerCase();
+                var rowStatus = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
 
                 if (selectedStatus === 'all' || (selectedStatus === 'done' && rowStatus === 'done') || (selectedStatus === 'progress' && rowStatus.includes('progress'))) {
                     row.style.display = '';
@@ -228,6 +254,7 @@
         });
     });
 </script>
+
 
 
 
