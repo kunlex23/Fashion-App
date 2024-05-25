@@ -129,9 +129,9 @@ if (isset($_GET['fullname'])) {
             while ($row = $result->fetch_assoc()) {
                 echo '<tr>';
                 echo '<td>' . htmlspecialchars($row["fullname"]) . '</td>';
-                echo '<td>' . htmlspecialchars($row["Style"]) . '</td>';
+                echo '<td>' . htmlspecialchars($row["style"]) . '</td>';
                 echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
-                echo '<td>' . htmlspecialchars($row["Entry_Date"]) . '</td>';
+                echo '<td>' . htmlspecialchars($row["Entry_date"]) . '</td>';
                 echo '<td>' . htmlspecialchars($row["Due_Date"]) . '</td>';
                 echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
                 // Delete link

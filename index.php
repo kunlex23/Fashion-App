@@ -86,7 +86,7 @@
                     <div class="income">
                     <div class="middle">
                         <div class="left">
-                            <a href="work-in-prog.php"><h3>Total Work in Progress</h3></a>
+                            <h3>Total Work in Progress</h3>
                             <div id="link_wrapper2">
                             
                             </div>

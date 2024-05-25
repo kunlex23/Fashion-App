@@ -141,9 +141,9 @@ if ($result->num_rows > 0) {
     // }
     while ($row = $result->fetch_assoc()) {
         echo '<tr>';
-        echo '<td>' . htmlspecialchars($row["Style"]) . '</td>';
+        echo '<td>' . htmlspecialchars($row["style"]) . '</td>';
         echo '<td>' . htmlspecialchars($row["Sewing"]) . '</td>';
-        echo '<td>' . htmlspecialchars($row["Entry_Date"]).'</td>';
+        echo '<td>' . htmlspecialchars($row["Entry_date"]).'</td>';
         echo '<td>' . htmlspecialchars($row["Due_Date"]) . '</td>';
         echo '<td>' . htmlspecialchars($row["StatusC"]) . '</td>';
         // Delete link
@@ -160,7 +160,7 @@ if ($result->num_rows > 0) {
     echo "No results found.";
 }
 
-$conn->close();
+// $conn->close();
 ?>
 
                  </main>
@@ -184,7 +184,7 @@ $conn->close();
                     </a>
 
                 <?php
-require 'config.php'; 
+// require 'config.php'; 
 
 // Get the fullname from the URL parameter
 $fullname = $_GET['fullname'];
