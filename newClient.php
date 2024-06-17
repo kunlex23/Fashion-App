@@ -74,8 +74,8 @@
             
                     <label for="gender">Gender:</label>
                     <select name="gender" required>
-                        <option value="Male">Male</option>
                         <option value="Female">Female</option>
+                        <option value="Male">Male</option>
                     </select><br>
                     
                 </div>
@@ -111,14 +111,13 @@
                     <input type="text" name="blouse_hips" required><br>
     
                     
-    
-                    <label for="arm_hole">Arm Hole:</label>
-                    <input type="text" name="arm_hole" required><br>
+                    <label for="blouse_waist">Blouse Waist:</label>
+                    <input type="text" name="blouse_waist" required><br>
                 </div>
 
                 <div class="tray3">
-                    <label for="blouse_waist">Blouse Waist:</label>
-                    <input type="text" name="blouse_waist" required><br>
+                    <label for="arm_hole">Arm Hole:</label>
+                    <input type="text" name="arm_hole" required><br>
 
                     <label for="back_half_cut">Back Half Cut:</label>
                     <input type="text" name="back_half_cut" required><br>
